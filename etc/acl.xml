@@ -4,15 +4,15 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Aligent_AsyncEvents::manage" title="Asynchronous Events" translate="title"
+                <resource id="MageOS_AsyncEvents::manage" title="Asynchronous Events" translate="title"
                           sortOrder="10">
-                    <resource id="Aligent_AsyncEvents::async_events_view" title="View" translate="title"/>
-                    <resource id="Aligent_AsyncEvents::async_events_get" title="Get" translate="title"/>
-                    <resource id="Aligent_AsyncEvents::async_events_save" title="Save" translate="title"/>
-                    <resource id="Aligent_AsyncEvents::async_events_logs" title="Logs" translate="title">
-                        <resource id="Aligent_AsyncEvents::async_events_logs_list" title="View" translate="title" />
-                        <resource id="Aligent_AsyncEvents::async_events_logs_trace" title="Trace" translate="title" />
-                        <resource id="Aligent_AsyncEvents::async_events_logs_replay" title="Replay" translate="title" />
+                    <resource id="MageOS_AsyncEvents::async_events_view" title="View" translate="title"/>
+                    <resource id="MageOS_AsyncEvents::async_events_get" title="Get" translate="title"/>
+                    <resource id="MageOS_AsyncEvents::async_events_save" title="Save" translate="title"/>
+                    <resource id="MageOS_AsyncEvents::async_events_logs" title="Logs" translate="title">
+                        <resource id="MageOS_AsyncEvents::async_events_logs_list" title="View" translate="title" />
+                        <resource id="MageOS_AsyncEvents::async_events_logs_trace" title="Trace" translate="title" />
+                        <resource id="MageOS_AsyncEvents::async_events_logs_replay" title="Replay" translate="title" />
                     </resource>
                 </resource>
             </resource>

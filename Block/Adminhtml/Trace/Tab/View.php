@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Block\Adminhtml\Trace\Tab;
+namespace MageOS\AsyncEvents\Block\Adminhtml\Trace\Tab;
 
 use Magento\Backend\Block\Template;
 use Magento\Framework\Phrase;

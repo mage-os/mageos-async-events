@@ -2,12 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
     <topic name="event.trigger" request="string[]" is_synchronous="false">
-        <handler name="event.trigger.handler" type="Aligent\AsyncEvents\Model\AsyncEventTriggerHandler"
+        <handler name="event.trigger.handler" type="MageOS\AsyncEvents\Model\AsyncEventTriggerHandler"
                  method="process"/>
     </topic>
 
     <topic name="event.retry" request="string[]" is_synchronous="false">
-        <handler name="event.retry.handler" type="Aligent\AsyncEvents\Model\RetryHandler" method="process"/>
+        <handler name="event.retry.handler" type="MageOS\AsyncEvents\Model\RetryHandler" method="process"/>
     </topic>
 
     <topic name="event.retry.kill" request="string[]" is_synchronous="false"/>

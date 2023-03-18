@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Model\Config as AsyncEventConfig;
-use Aligent\AsyncEvents\Service\AsyncEvent\EventDispatcher;
+use MageOS\AsyncEvents\Model\Config as AsyncEventConfig;
+use MageOS\AsyncEvents\Service\AsyncEvent\EventDispatcher;
 use Exception;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Serialize\Serializer\Json;

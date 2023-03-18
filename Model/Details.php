@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
+use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class Details

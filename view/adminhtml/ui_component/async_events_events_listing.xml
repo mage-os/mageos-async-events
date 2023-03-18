@@ -21,7 +21,7 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Aligent_AsyncEvents::manage</aclResource>
+        <aclResource>MageOS_AsyncEvents::manage</aclResource>
         <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
                       name="async_events_events_listing_data_source">
             <settings>

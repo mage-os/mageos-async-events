@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Block\Adminhtml\Trace\Tab\View;
+namespace MageOS\AsyncEvents\Block\Adminhtml\Trace\Tab\View;
 
-use Aligent\AsyncEvents\Model\Details;
+use MageOS\AsyncEvents\Model\Details;
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Events;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Events;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -12,9 +12,9 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    private const MENU_ID = 'Aligent_AsyncEvents::index';
+    private const MENU_ID = 'MageOS_AsyncEvents::index';
 
-    public const ADMIN_RESOURCE = 'Aligent_AsyncEvents::async_events_view';
+    public const ADMIN_RESOURCE = 'MageOS_AsyncEvents::async_events_view';
 
     /**
      * @param Context $context

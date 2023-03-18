@@ -1,13 +1,9 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Test\Api;
+namespace MageOS\AsyncEvents\Test\Api;
 
 use Magento\Framework\Webapi\Rest\Request;
 use Magento\TestFramework\TestCase\WebapiAbstract;
@@ -15,7 +11,7 @@ use Magento\TestFramework\TestCase\WebapiAbstract;
 class AsyncEventRepositoryTest extends WebapiAbstract
 {
     /**
-     * @magentoApiDataFixture Aligent_AsyncEvents::Test/_files/http_async_events.php
+     * @magentoApiDataFixture MageOS_AsyncEvents::Test/_files/http_async_events.php
      */
     public function testGet()
     {

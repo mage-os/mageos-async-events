@@ -1,8 +1,8 @@
 <?php
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Helper\Config;
+use MageOS\AsyncEvents\Helper\Config;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Stdlib\DateTime;
 

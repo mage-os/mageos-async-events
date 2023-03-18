@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Config;
+namespace MageOS\AsyncEvents\Model\Config;
 
 use DOMNode;
 use InvalidArgumentException;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Events;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Events;
 
-use Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface;
-use Aligent\AsyncEvents\Model\AsyncEvent;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\Collection;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory;
+use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
+use MageOS\AsyncEvents\Model\AsyncEvent;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\Collection;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory;
 use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -18,7 +18,7 @@ use Magento\Ui\Component\MassAction\Filter;
 
 class MassEnable extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Aligent_AsyncEvents::async_events_save';
+    public const ADMIN_RESOURCE = 'MageOS_AsyncEvents::async_events_save';
 
     /**
      * @param Context $context

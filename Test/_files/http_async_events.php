@@ -1,14 +1,14 @@
 <?php
 
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterfaceFactory;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterfaceFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 
 $objectManager = Bootstrap::getObjectManager();
 
 $asyncEventFactory = $objectManager->get(AsyncEventInterfaceFactory::class);
 
-$asyncEventRepository = $objectManager->get(\Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface::class);
+$asyncEventRepository = $objectManager->get(\MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface::class);
 
 /** @var AsyncEventInterface $asyncEvent */
 $asyncEvent = $asyncEventFactory->create(

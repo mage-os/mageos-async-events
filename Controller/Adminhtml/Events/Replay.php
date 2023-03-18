@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Events;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Events;
 
-use Aligent\AsyncEvents\Service\AsyncEvent\RetryManager;
+use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ResponseInterface;
@@ -14,7 +14,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Replay extends Action implements HttpPostActionInterface
 {
-    public const ADMIN_RESOURCE = 'Aligent_AsyncEvents::async_events_logs_replay';
+    public const ADMIN_RESOURCE = 'MageOS_AsyncEvents::async_events_logs_replay';
 
     /**
      * Retry Constructor

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Logs;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Logs;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -12,9 +12,9 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action implements HttpGetActionInterface
 {
-    private const MENU_ID = 'Aligent_AsyncEvents::logs';
+    private const MENU_ID = 'MageOS_AsyncEvents::logs';
 
-    public const ADMIN_RESOURCE = 'Aligent_AsyncEvents::async_events_logs_list';
+    public const ADMIN_RESOURCE = 'MageOS_AsyncEvents::async_events_logs_list';
 
     /**
      * @param Context $context
