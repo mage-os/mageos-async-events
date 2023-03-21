@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog;
+namespace MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog;
 
-use Aligent\AsyncEvents\Model\AsyncEventLog;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog as AsyncEventLogResource;
+use MageOS\AsyncEvents\Model\AsyncEventLog;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog as AsyncEventLogResource;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection

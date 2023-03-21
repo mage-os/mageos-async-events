@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid;
+namespace MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 

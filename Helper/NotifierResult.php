@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Helper;
+namespace MageOS\AsyncEvents\Helper;
 
 use Magento\Framework\DataObject;
 

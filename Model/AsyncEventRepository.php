@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterfaceFactory as SearchResultsFactory;
-use Aligent\AsyncEvents\Model\Config as AsyncEventConfig;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent as AsyncEventResource;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
+use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterfaceFactory as SearchResultsFactory;
+use MageOS\AsyncEvents\Model\Config as AsyncEventConfig;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent as AsyncEventResource;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
 use DateTime;
 use DateTimeInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;

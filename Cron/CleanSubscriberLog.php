@@ -1,8 +1,8 @@
 <?php
 
-namespace Aligent\AsyncEvents\Cron;
+namespace MageOS\AsyncEvents\Cron;
 
-use Aligent\AsyncEvents\Model\AsyncEventCleanSubscriberLogs;
+use MageOS\AsyncEvents\Model\AsyncEventCleanSubscriberLogs;
 use Exception;
 use Psr\Log\LoggerInterface;
 

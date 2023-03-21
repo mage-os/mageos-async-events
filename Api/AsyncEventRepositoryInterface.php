@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Api;
+namespace MageOS\AsyncEvents\Api;
 
-use Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\AuthorizationException;

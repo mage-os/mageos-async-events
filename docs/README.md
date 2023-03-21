@@ -95,11 +95,11 @@ Example:
 
 Let's say you want to allow subscriptions to `customer_created` and
 `sales_order_updated` events; you'll need to override the `events` constructor
-argument for `Aligent\Webhooks\Service\Webhook\ModelEventHandler` as follows in
+argument for `MageOS\Webhooks\Service\Webhook\ModelEventHandler` as follows in
 a `di.xml`
 
 ```xml
-    <type name="Aligent\Webhooks\Service\Webhook\ModelEventHandler">
+    <type name="MageOS\Webhooks\Service\Webhook\ModelEventHandler">
     <arguments>
         <argument name="events" xsi:type="array">
             <item name="customer_created"xsi:type="string">customer_created</item>
@@ -165,15 +165,15 @@ There is an extra metadata field on a webhook and it defaults to null, there is 
 
 
 ```xml
-    <preference for="Aligent\Webhooks\Service\Webhook\NotifierFactoryInterface"
+    <preference for="MageOS\Webhooks\Service\Webhook\NotifierFactoryInterface"
                 type="Some\Module\Service\MyFactory" />
 ```
 
 An example custom implementation could look like
 
 ```php
-use Aligent\Webhooks\Service\Webhook\NotifierFactoryInterface;
-use Aligent\Webhooks\Service\Webhook\NotifierInterface;
+use MageOS\Webhooks\Service\Webhook\NotifierFactoryInterface;
+use MageOS\Webhooks\Service\Webhook\NotifierInterface;
 
 class MyFactory implements NotifierFactoryInterface
 {

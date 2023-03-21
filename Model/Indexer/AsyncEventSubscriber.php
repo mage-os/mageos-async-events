@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer;
+namespace MageOS\AsyncEvents\Model\Indexer;
 
-use Aligent\AsyncEvents\Helper\Config;
-use Aligent\AsyncEvents\Model\Indexer\DataProvider\AsyncEventSubscriberLogs;
-use Aligent\AsyncEvents\Model\Resolver\AsyncEvent;
+use MageOS\AsyncEvents\Helper\Config;
+use MageOS\AsyncEvents\Model\Indexer\DataProvider\AsyncEventSubscriberLogs;
+use MageOS\AsyncEvents\Model\Resolver\AsyncEvent;
 use ArrayIterator;
 use Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory;
 use Magento\Framework\App\DeploymentConfig;

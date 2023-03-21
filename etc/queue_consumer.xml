@@ -3,7 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/consumer.xsd">
     <consumer name="event.trigger.consumer" queue="event.trigger" connection="amqp"
               consumerInstance="Magento\Framework\MessageQueue\Consumer"
-              handler="Aligent\AsyncEvents\Model\AsyncEventTriggerHandler::process"/>
+              handler="MageOS\AsyncEvents\Model\AsyncEventTriggerHandler::process"/>
 
     <consumer name="event.retry.consumer" queue="event.failover.retry" connection="amqp"
               consumerInstance="Magento\Framework\MessageQueue\Consumer" />

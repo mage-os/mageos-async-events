@@ -1,16 +1,11 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
-
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Resolver;
+namespace MageOS\AsyncEvents\Model\Resolver;
 
-use Aligent\AsyncEvents\Model\Indexer\AsyncEventScopeFactory;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
+use MageOS\AsyncEvents\Model\Indexer\AsyncEventScopeFactory;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
 use Magento\Framework\App\ScopeResolverInterface;
 
 class AsyncEvent implements ScopeResolverInterface

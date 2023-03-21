@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Service\AsyncEvent;
+namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
-use Aligent\AsyncEvents\Helper\NotifierResult;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Helper\NotifierResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Magento\Framework\Encryption\EncryptorInterface;

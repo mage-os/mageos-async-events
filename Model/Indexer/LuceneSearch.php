@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer;
+namespace MageOS\AsyncEvents\Model\Indexer;
 
 use Exception;
 use Magento\Elasticsearch\Model\Config;
@@ -52,6 +52,12 @@ class LuceneSearch extends Search
         $client = $this->connectionManager->getConnection();
         $value = $this->getContext()->getRequestParam('search');
         $indexPrefix = $this->config->getIndexPrefix();
+        $filter = $this->filterBuilder->setConditionType('in')
+            ->setField($this->getName());
+
+        if ($value === "") {
+            return;
+        }
 
         try {
             $rawResponse = $client->query(
@@ -68,16 +74,15 @@ class LuceneSearch extends Search
             $asyncEventIds = array_column($rawDocuments, '_id');
 
             if (!empty($asyncEventIds)) {
-                $filter = $this->filterBuilder->setConditionType('in')
-                    ->setField($this->getName())
-                    ->setValue($asyncEventIds)
-                    ->create();
-
-                $this->getContext()->getDataProvider()->addFilter($filter);
+                $filter->setValue($asyncEventIds);
+            } else {
+                $filter->setValue("0");
             }
         } catch (Exception) {
-            // Fallback to default filter search
-            parent::prepare();
+            // If we're unable to connect to Elasticsearch, we'll return nothing
+            $filter->setValue("0");
         }
+
+        $this->getContext()->getDataProvider()->addFilter($filter->create());
     }
 }

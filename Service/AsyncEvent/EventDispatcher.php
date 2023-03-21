@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Service\AsyncEvent;
+namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
-use Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface;
-use Aligent\AsyncEvents\Helper\NotifierResult;
-use Aligent\AsyncEvents\Model\AsyncEvent;
-use Aligent\AsyncEvents\Model\AsyncEventLog;
-use Aligent\AsyncEvents\Model\AsyncEventLogFactory;
-use Aligent\AsyncEvents\Model\AsyncEventLogRepository;
+use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
+use MageOS\AsyncEvents\Helper\NotifierResult;
+use MageOS\AsyncEvents\Model\AsyncEvent;
+use MageOS\AsyncEvents\Model\AsyncEventLog;
+use MageOS\AsyncEvents\Model\AsyncEventLogFactory;
+use MageOS\AsyncEvents\Model\AsyncEventLogRepository;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\DataObject\IdentityGeneratorInterface;
 use Magento\Framework\Exception\AlreadyExistsException;

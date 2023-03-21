@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
-    <view id="async_event" class="Aligent\AsyncEvents\Model\Indexer\Mview\Action" group="indexer">
+    <view id="async_event" class="MageOS\AsyncEvents\Model\Indexer\Mview\Action" group="indexer">
         <subscriptions>
             <table name="async_event_subscriber_log" entity_column="log_id" />
         </subscriptions>

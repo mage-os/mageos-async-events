@@ -32,7 +32,7 @@ Create a new `async_events.xml` under a module's `etc/` directory.
 <?xml version="1.0"?>
 <config
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="urn:magento:module:Aligent_AsyncEvents:etc/async_events.xsd"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:MageOS_AsyncEvents:etc/async_events.xsd"
 >
     <async_event name="sales.order.created">
         <service class="Magento\Sales\Api\OrderRepositoryInterface" method="get"/>

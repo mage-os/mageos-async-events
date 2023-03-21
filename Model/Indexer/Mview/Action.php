@@ -1,13 +1,8 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
-
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer\Mview;
+namespace MageOS\AsyncEvents\Model\Indexer\Mview;
 
 use Magento\Framework\Indexer\IndexerInterfaceFactory;
 use Magento\Framework\Mview\ActionInterface;
