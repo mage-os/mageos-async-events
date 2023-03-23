@@ -37,19 +37,24 @@ class EventDispatcher
     }
 
     /**
-     * Dispatch an asynchronous event to all subscribers
+     * Dispatch an asynchronous event to scoped subscribers
      *
      * @param string $eventName
      * @param mixed $output
+     * @param int $storeId
      * @return void
      */
-    public function dispatch(string $eventName, mixed $output): void
+    public function dispatch(string $eventName, mixed $output, int $storeId = 0): void
     {
-        $searchCriteria = $this->searchCriteriaBuilder
+        $searchCriteriaBuilder = $this->searchCriteriaBuilder
             ->addFilter('status', 1)
-            ->addFilter('event_name', $eventName)
-            ->create();
+            ->addFilter('event_name', $eventName);
 
+        if ($storeId !== 0) {
+            $searchCriteriaBuilder->addFilter('store_id', $storeId);
+        }
+
+        $searchCriteria = $searchCriteriaBuilder->create();
         $asyncEvents = $this->asyncEventRepository->getList($searchCriteria)->getItems();
 
         /** @var AsyncEvent $asyncEvent */

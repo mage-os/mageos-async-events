@@ -40,4 +40,19 @@ interface AsyncEventDisplayInterface
      * @return string
      */
     public function getSubscribedAt(): string;
+
+    /**
+     * Getter for store id
+     *
+     * @return int
+     */
+    public function getStoreId(): int;
+
+    /**
+     * Setter for store id
+     *
+     * @param int $storeId
+     * @return void
+     */
+    public function setStoreId(int $storeId): void;
 }
