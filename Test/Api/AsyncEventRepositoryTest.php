@@ -29,6 +29,7 @@ class AsyncEventRepositoryTest extends WebapiAbstract
         $this->assertArrayHasKey('recipient_url', $response);
         $this->assertArrayHasKey('status', $response);
         $this->assertArrayHasKey('subscribed_at', $response);
+        $this->assertArrayHasKey('store_id', $response);
 
         // Make sure that the verification token is not exposed even if it is encrypted.
         $this->assertArrayNotHasKey('verification_token', $response);
@@ -58,6 +59,7 @@ class AsyncEventRepositoryTest extends WebapiAbstract
         $this->assertArrayHasKey('recipient_url', $response['items'][0]);
         $this->assertArrayHasKey('status', $response['items'][0]);
         $this->assertArrayHasKey('subscribed_at', $response['items'][0]);
+        $this->assertArrayHasKey('store_id', $response['items'][0]);
 
         // Make sure that the verification token is not exposed even if it is encrypted.
         $this->assertArrayNotHasKey('verification_token', $response['items'][0]);

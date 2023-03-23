@@ -12,6 +12,8 @@
         <column name="modified" xsi:type="datetime" on_update="true"/>
         <column name="metadata" xsi:type="text" nullable="false"
                 comment="Extra information for instantiating notifiers"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="subscription_id"/>

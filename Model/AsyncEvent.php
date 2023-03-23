@@ -134,4 +134,20 @@ class AsyncEvent extends AbstractExtensibleModel implements AsyncEventInterface,
     {
         $this->setData('metadata', $metadata);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getStoreId(): int
+    {
+        return (int) $this->getData('store_id');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setStoreId(int $storeId): void
+    {
+        $this->setData('store_id', $storeId);
+    }
 }

@@ -8,7 +8,8 @@
             "status": true,
             "subscribed_at": true,
             "modified": true,
-            "metadata": true
+            "metadata": true,
+            "store_id": true
         },
         "constraint": {
             "PRIMARY": true
