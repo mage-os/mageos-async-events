@@ -13,6 +13,9 @@
     <preference for="MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface"
                 type="MageOS\AsyncEvents\Model\AsyncEventSearchResults"/>
 
+    <preference for="MageOS\AsyncEvents\Api\AsyncEventPublisherInterface"
+                type="MageOS\AsyncEvents\Model\AsyncEventPublisher"/>
+
     <!-- UI Component DataProviders -->
     <type name="MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid\Collection">
         <arguments>
