@@ -128,11 +128,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapperInterface">
-        <plugin name="add_entity_type_context"
-                type="MageOS\AsyncEvents\Plugin\AddEntityTypeContext"/>
-    </type>
-
     <type name="Magento\Elasticsearch\Model\Adapter\Index\BuilderInterface">
         <plugin name="map_string_scope_to_int"
                 type="MageOS\AsyncEvents\Plugin\MapStringScopeToInt"/>
