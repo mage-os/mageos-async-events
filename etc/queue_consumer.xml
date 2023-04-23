@@ -6,5 +6,7 @@
               handler="MageOS\AsyncEvents\Model\AsyncEventTriggerHandler::process"/>
 
     <consumer name="event.retry.consumer" queue="event.failover.retry" connection="amqp"
-              consumerInstance="Magento\Framework\MessageQueue\Consumer" />
+              consumerInstance="Magento\Framework\MessageQueue\Consumer"
+              handler="MageOS\AsyncEvents\Model\RetryHandler::process"
+    />
 </config>
