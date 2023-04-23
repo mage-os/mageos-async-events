@@ -49,7 +49,7 @@ class AsyncEventTriggerHandler
             // In a future major version this will change to a schema type e.g: AsyncEventMessageInterface
             $eventName = $queueMessage[0];
             $output = $this->json->unserialize($queueMessage[1]);
-            $storeId = (int) $queueMessage[2] ?? 0;
+            $storeId = (int) ($queueMessage[2] ?? 0);
 
             $configData = $this->asyncEventConfig->get($eventName);
             $serviceClassName = $configData['class'];
