@@ -112,7 +112,7 @@ jobs:
         name: Fixup Composer Plugins
         working-directory:  "../magento2"
 
-      - run: composer require aligent/async-events "@dev" --no-update && composer install
+      - run: composer require mage-os/mageos-async-events "@dev" --no-update && composer install
         name: Require and attempt install
         working-directory:  "../magento2"
         shell: bash
@@ -138,6 +138,6 @@ jobs:
       - run: |
           php -S 127.0.0.1:8082 -t ./pub/ ./phpserver/router.php &
           sleep 5
-          vendor/bin/phpunit -c $(pwd)/dev/tests/api-functional/phpunit_rest.xml vendor/aligent/async-events/Test/Api
+          vendor/bin/phpunit -c $(pwd)/dev/tests/api-functional/phpunit_rest.xml vendor/mage-os/mageos-async-events/Test/Api
         working-directory:  ../magento2
         name: Run API Functional Tests

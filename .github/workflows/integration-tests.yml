@@ -112,7 +112,7 @@ jobs:
         name: Fixup Composer Plugins
         working-directory:  "../magento2"
 
-      - run: composer require aligent/async-events "@dev" --no-update && composer install
+      - run: composer require mage-os/mageos-async-events "@dev" --no-update && composer install
         name: Require and attempt install
         working-directory:  "../magento2"
         shell: bash
@@ -129,6 +129,6 @@ jobs:
           sed -i "s/'elasticsearch-host' => 'localhost'/'elasticsearch-host' => '127.0.0.1'/" etc/install-config-mysql.php.dist
           sed -i "s/'amqp-host' => 'localhost'/'amqp-host' => '127.0.0.1'/" etc/install-config-mysql.php.dist
 
-      - run: ../../../vendor/bin/phpunit ../../../vendor/aligent/async-events/Test/Integration
+      - run: ../../../vendor/bin/phpunit ../../../vendor/mage-os/mageos-async-events/Test/Integration
         working-directory:  ../magento2/dev/tests/integration
         name: Run Integration Tests

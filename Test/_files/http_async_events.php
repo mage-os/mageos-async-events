@@ -1,25 +1,19 @@
 <?php
 
-use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
-use MageOS\AsyncEvents\Api\Data\AsyncEventInterfaceFactory;
+use Magento\Framework\App\ResourceConnection;
 use Magento\TestFramework\Helper\Bootstrap;
 
 $objectManager = Bootstrap::getObjectManager();
 
-$asyncEventFactory = $objectManager->get(AsyncEventInterfaceFactory::class);
+$resource = $objectManager->get(ResourceConnection::class);
+$connection = $resource->getConnection();
 
-$asyncEventRepository = $objectManager->get(\MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface::class);
-
-/** @var AsyncEventInterface $asyncEvent */
-$asyncEvent = $asyncEventFactory->create(
-    [
-        'data' => [
-            'event' => 'example.event',
-            'recipient_url' => 'http://host.docker.internal:3001/failable',
-            'verification_token' => 'supersecret',
-            'status' => 1
-        ]
-    ]
-);
-$asyncEvent->setEventName('example.event');
-$asyncEventRepository->save($asyncEvent);
+$connection->insertOnDuplicate('async_event_subscriber', [
+    'subscription_id' => 1,
+    'event_name' => 'example.event',
+    'recipient_url' => 'https://mock.codes/500',
+    'status' => 1,
+    'metadata' => 'http',
+    'verification_token' => 'secret',
+    'subscribed_at' => (new DateTime())->format(DateTimeInterface::ATOM)
+]);
