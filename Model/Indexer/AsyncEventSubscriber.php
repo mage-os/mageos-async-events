@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Model\Indexer;
 
+use Magento\Elasticsearch\Model\Adapter\Elasticsearch;
 use MageOS\AsyncEvents\Helper\Config;
 use MageOS\AsyncEvents\Model\Indexer\DataProvider\AsyncEventSubscriberLogs;
 use MageOS\AsyncEvents\Model\Resolver\AsyncEvent;
@@ -58,6 +59,7 @@ class AsyncEventSubscriber implements
      * @param AsyncEvent $asyncEventScopeResolver
      * @param IndexStructure $indexStructure
      * @param Config $config
+     * @param Elasticsearch $adapter
      * @param array $data
      * @param int|null $batchSize
      * @param DeploymentConfig|null $deploymentConfig
@@ -69,6 +71,7 @@ class AsyncEventSubscriber implements
         private readonly AsyncEvent $asyncEventScopeResolver,
         private readonly IndexStructureInterface $indexStructure,
         private readonly Config $config,
+        private readonly Elasticsearch $adapter,
         private readonly array $data,
         int $batchSize = null,
         DeploymentConfig $deploymentConfig = null
@@ -99,6 +102,7 @@ class AsyncEventSubscriber implements
         $saveHandler = $this->indexerHandlerFactory->create(
             [
                 'data' => $this->data,
+                'adapter' => $this->adapter,
                 'scopeResolver' => $this->asyncEventScopeResolver,
                 'indexStructure' => $this->indexStructure
             ]
