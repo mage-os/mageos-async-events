@@ -19,7 +19,18 @@ A framework for reliably handling asynchronous events with Magento.
 ## Installation
 
 ```
-composer require aligent/async-events
+composer config repositories.mageos-async-events git https://github.com/mage-os/mageos-async-events.git
+composer require mage-os/mageos-async-events
+```
+
+If you run into an error like "Could not find a version of package mage-os/mageos-async-events matching your minimum-stability (stable).", run this command instead:
+```
+composer require mage-os/mageos-async-events @dev
+```
+
+Install the module:
+```
+bin/magento setup:upgrade
 ```
 
 ## Usage
