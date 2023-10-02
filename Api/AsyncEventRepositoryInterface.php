@@ -19,7 +19,7 @@ interface AsyncEventRepositoryInterface
      * Get a single asynchronous event by id
      *
      * @param int $subscriptionId
-     * @return AsyncEventDisplayInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface
      * @throws NoSuchEntityException
      */
     public function get(int $subscriptionId): AsyncEventDisplayInterface;
@@ -28,16 +28,16 @@ interface AsyncEventRepositoryInterface
      * Get a list of asynchronous events by search criteria
      *
      * @param SearchCriteriaInterface $searchCriteria
-     * @return AsyncEventSearchResultsInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $searchCriteria): AsyncEventSearchResultsInterface;
 
     /**
      * Save an asynchronous event
      *
-     * @param AsyncEventInterface $asyncEvent
+     * @param \MageOS\AsyncEvents\Api\Data\AsyncEventInterface $asyncEvent
      * @param bool $checkResources
-     * @return AsyncEventDisplayInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface
      * @throws NoSuchEntityException
      * @throws LocalizedException
      * @throws AlreadyExistsException
