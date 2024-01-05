@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
 use Magento\Framework\Model\AbstractExtensibleModel;
 
 class AsyncEvent extends AbstractExtensibleModel implements AsyncEventInterface, AsyncEventDisplayInterface

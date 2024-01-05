@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Events;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Events;
 
-use Aligent\AsyncEvents\Service\AsyncEvent\RetryManager;
+use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\ResponseInterface;

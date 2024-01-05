@@ -1,32 +1,32 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface"
-                type="Aligent\AsyncEvents\Model\AsyncEventRepository"/>
+    <preference for="MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface"
+                type="MageOS\AsyncEvents\Model\AsyncEventRepository"/>
 
-    <preference for="Aligent\AsyncEvents\Api\Data\AsyncEventInterface"
-                type="Aligent\AsyncEvents\Model\AsyncEvent"/>
+    <preference for="MageOS\AsyncEvents\Api\Data\AsyncEventInterface"
+                type="MageOS\AsyncEvents\Model\AsyncEvent"/>
 
-    <preference for="Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface"
-                type="Aligent\AsyncEvents\Model\AsyncEvent"/>
+    <preference for="MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface"
+                type="MageOS\AsyncEvents\Model\AsyncEvent"/>
 
-    <preference for="Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface"
-                type="Aligent\AsyncEvents\Model\AsyncEventSearchResults"/>
+    <preference for="MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface"
+                type="MageOS\AsyncEvents\Model\AsyncEventSearchResults"/>
 
     <!-- UI Component DataProviders -->
-    <type name="Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid\Collection">
+    <type name="MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">async_event_subscriber</argument>
-            <argument name="resourceModel" xsi:type="string">Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent
+            <argument name="resourceModel" xsi:type="string">MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent
             </argument>
         </arguments>
     </type>
 
-    <type name="Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid\Collection">
+    <type name="MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">async_event_subscriber_log</argument>
             <argument name="resourceModel" xsi:type="string">
-                Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog
+                MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog
             </argument>
         </arguments>
     </type>
@@ -35,71 +35,71 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="async_events_events_listing_data_source" xsi:type="string">
-                    Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid\Collection
+                    MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\Grid\Collection
                 </item>
                 <item name="async_events_logs_listing_data_source" xsi:type="string">
-                    Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid\Collection
+                    MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid\Collection
                 </item>
                 <item name="async_events_logs_trace_data_source" xsi:type="string">
-                    Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLogs\Grid\Collection
+                    MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLogs\Grid\Collection
                 </item>
             </argument>
         </arguments>
     </type>
 
-    <virtualType name="Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLogs\Grid\Collection"
+    <virtualType name="MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLogs\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">async_event_subscriber_log</argument>
-            <argument name="resourceModel" xsi:type="string">Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog
+            <argument name="resourceModel" xsi:type="string">MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog
             </argument>
         </arguments>
     </virtualType>
 
     <!-- NotifierFactory and Notifier setup -->
-    <preference for="Aligent\AsyncEvents\Service\AsyncEvent\NotifierFactoryInterface"
-                type="Aligent\AsyncEvents\Service\AsyncEvent\NotifierFactory"/>
+    <preference for="MageOS\AsyncEvents\Service\AsyncEvent\NotifierFactoryInterface"
+                type="MageOS\AsyncEvents\Service\AsyncEvent\NotifierFactory"/>
 
-    <type name="Aligent\AsyncEvents\Service\AsyncEvent\NotifierFactory">
+    <type name="MageOS\AsyncEvents\Service\AsyncEvent\NotifierFactory">
         <arguments>
             <argument name="notifierClasses" xsi:type="array">
-                <item name="http" xsi:type="object">Aligent\AsyncEvents\Service\AsyncEvent\HttpNotifier</item>
+                <item name="http" xsi:type="object">MageOS\AsyncEvents\Service\AsyncEvent\HttpNotifier</item>
             </argument>
         </arguments>
     </type>
 
     <!-- XML/XSD Config -->
-    <type name="Aligent\AsyncEvents\Model\Config\Reader">
+    <type name="MageOS\AsyncEvents\Model\Config\Reader">
         <arguments>
             <argument name="fileName" xsi:type="string">async_events.xml</argument>
-            <argument name="converter" xsi:type="object">Aligent\AsyncEvents\Model\Config\Converter</argument>
-            <argument name="schemaLocator" xsi:type="object">Aligent\AsyncEvents\Model\Config\SchemaLocator</argument>
+            <argument name="converter" xsi:type="object">MageOS\AsyncEvents\Model\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">MageOS\AsyncEvents\Model\Config\SchemaLocator</argument>
         </arguments>
     </type>
 
     <virtualType name="asyncEventDataStorage" type="Magento\Framework\Config\Data">
         <arguments>
-            <argument name="reader" xsi:type="object">Aligent\AsyncEvents\Model\Config\Reader</argument>
+            <argument name="reader" xsi:type="object">MageOS\AsyncEvents\Model\Config\Reader</argument>
             <argument name="cacheId" xsi:type="string">async_event_config_cache</argument>
         </arguments>
     </virtualType>
 
-    <type name="Aligent\AsyncEvents\Model\Config">
+    <type name="MageOS\AsyncEvents\Model\Config">
         <arguments>
             <argument name="dataStorage" xsi:type="object">asyncEventDataStorage</argument>
         </arguments>
     </type>
 
     <!-- Elasticsearch Indexing -->
-    <type name="Aligent\AsyncEvents\Model\Indexer\AsyncEventSubscriber">
+    <type name="MageOS\AsyncEvents\Model\Indexer\AsyncEventSubscriber">
         <arguments>
-            <argument name="dimensionProvider" xsi:type="object" shared="false">\Aligent\AsyncEvents\Model\Indexer\AsyncEventDimensionProvider</argument>
+            <argument name="dimensionProvider" xsi:type="object" shared="false">\MageOS\AsyncEvents\Model\Indexer\AsyncEventDimensionProvider</argument>
         </arguments>
     </type>
 
-    <type name="\Aligent\AsyncEvents\Model\Indexer\IndexStructure">
+    <type name="\MageOS\AsyncEvents\Model\Indexer\IndexStructure">
         <arguments>
-            <argument name="scopeResolver" xsi:type="object">\Aligent\AsyncEvents\Model\Resolver\AsyncEvent</argument>
+            <argument name="scopeResolver" xsi:type="object">\MageOS\AsyncEvents\Model\Resolver\AsyncEvent</argument>
         </arguments>
     </type>
 
@@ -107,7 +107,7 @@
         <arguments>
             <argument name="dataMappers" xsi:type="array">
                 <item name="async_event" xsi:type="string">
-                    \Aligent\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper
+                    \MageOS\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper
                 </item>
             </argument>
         </arguments>
@@ -117,7 +117,7 @@
         <arguments>
             <argument name="fieldMappers" xsi:type="array">
                 <item name="async_event" xsi:type="string">
-                    \Aligent\AsyncEvents\Model\Adapter\FieldMapper\DynamicFieldMapper
+                    \MageOS\AsyncEvents\Model\Adapter\FieldMapper\DynamicFieldMapper
                 </item>
             </argument>
         </arguments>
@@ -125,6 +125,6 @@
 
     <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapperInterface">
         <plugin name="add_entity_type_context"
-                type="Aligent\AsyncEvents\Plugin\AddEntityTypeContext"/>
+                type="MageOS\AsyncEvents\Plugin\AddEntityTypeContext"/>
     </type>
 </config>

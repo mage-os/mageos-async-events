@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Service\AsyncEvent;
+namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
 interface NotifierFactoryInterface
 {

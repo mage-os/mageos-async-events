@@ -3,7 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Aligent_AsyncEvents::manage" title="Manage Asynchronous Events" translate="title" sortOrder="10" />
+                <resource id="MageOS_AsyncEvents::manage" title="Manage Asynchronous Events" translate="title" sortOrder="10" />
             </resource>
         </resources>
     </acl>

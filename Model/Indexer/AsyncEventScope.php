@@ -1,13 +1,8 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
-
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer;
+namespace MageOS\AsyncEvents\Model\Indexer;
 
 use Magento\Framework\App\ScopeInterface;
 use Magento\Framework\DataObject;

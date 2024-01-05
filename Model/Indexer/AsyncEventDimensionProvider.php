@@ -1,15 +1,10 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
-
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer;
+namespace MageOS\AsyncEvents\Model\Indexer;
 
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEvent\CollectionFactory as AsyncEventCollectionFactory;
 use Magento\Framework\Indexer\DimensionFactory;
 use Magento\Framework\Indexer\DimensionProviderInterface;
 use SplFixedArray;

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Ui\DataProvider;
+namespace MageOS\AsyncEvents\Ui\DataProvider;
 
-use Aligent\AsyncEvents\Model\Details;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
+use MageOS\AsyncEvents\Model\Details;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
 use Magento\Framework\App\RequestInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
 
 class AsyncEventsTrace extends AbstractDataProvider
 {

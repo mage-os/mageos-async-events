@@ -2,27 +2,27 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/async_event/:subscriptionId" method="GET">
-        <service class="Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface" method="get"/>
+        <service class="MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface" method="get"/>
         <resources>
-            <resource ref="Aligent_AsyncEvents::manage" />
+            <resource ref="MageOS_AsyncEvents::manage" />
         </resources>
     </route>
     <route url="/V1/async_events" method="GET">
-        <service class="Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface" method="getList"/>
+        <service class="MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface" method="getList"/>
         <resources>
-            <resource ref="Aligent_AsyncEvents::manage" />
+            <resource ref="MageOS_AsyncEvents::manage" />
         </resources>
     </route>
     <route url="/V1/async_event" method="POST">
-        <service class="Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface" method="save"/>
+        <service class="MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface" method="save"/>
         <resources>
-            <resource ref="Aligent_AsyncEvents::manage" />
+            <resource ref="MageOS_AsyncEvents::manage" />
         </resources>
     </route>
     <route url="/V1/async_event/:subscriptionId" method="PUT">
-        <service class="Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface" method="save"/>
+        <service class="MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface" method="save"/>
         <resources>
-            <resource ref="Aligent_AsyncEvents::manage" />
+            <resource ref="MageOS_AsyncEvents::manage" />
         </resources>
     </route>
 </routes>

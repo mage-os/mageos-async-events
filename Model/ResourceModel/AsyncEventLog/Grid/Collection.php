@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid;
+namespace MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Grid;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 use Zend_Db_Expr;

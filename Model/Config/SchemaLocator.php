@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Config;
+namespace MageOS\AsyncEvents\Model\Config;
 
 use Magento\Framework\Config\SchemaLocatorInterface;
 use Magento\Framework\Module\Dir;
@@ -28,7 +28,7 @@ class SchemaLocator implements SchemaLocatorInterface
      */
     public function __construct(\Magento\Framework\Module\Dir\Reader $moduleReader)
     {
-        $dir = $moduleReader->getModuleDir(Dir::MODULE_ETC_DIR, 'Aligent_AsyncEvents');
+        $dir = $moduleReader->getModuleDir(Dir::MODULE_ETC_DIR, 'MageOS_AsyncEvents');
         $this->_schema = $dir . '/async_events.xsd';
         $this->_schemaFile = $dir . '/async_events.xsd';
     }
