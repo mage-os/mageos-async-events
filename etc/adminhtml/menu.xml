@@ -2,16 +2,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Aligent_AsyncEvents::integrations" title="Asynchronous Events" translate="title" module="Aligent_AsyncEvents"
-             parent="Magento_Backend::stores" sortOrder="50" dependsOnModule="Aligent_AsyncEvents"
-             resource="Aligent_AsyncEvents::manage"/>
+        <add id="MageOS_AsyncEvents::integrations" title="Asynchronous Events" translate="title" module="MageOS_AsyncEvents"
+             parent="Magento_Backend::stores" sortOrder="50" dependsOnModule="MageOS_AsyncEvents"
+             resource="MageOS_AsyncEvents::manage"/>
 
-        <add id="Aligent_AsyncEvents::index" title="Subscribers" translate="title" module="Aligent_AsyncEvents"
-             parent="Aligent_AsyncEvents::integrations" sortOrder="10" dependsOnModule="Aligent_AsyncEvents"
-             action="async_events/events" resource="Aligent_AsyncEvents::manage" />
+        <add id="MageOS_AsyncEvents::index" title="Subscribers" translate="title" module="MageOS_AsyncEvents"
+             parent="MageOS_AsyncEvents::integrations" sortOrder="10" dependsOnModule="MageOS_AsyncEvents"
+             action="async_events/events" resource="MageOS_AsyncEvents::manage" />
 
-        <add id="Aligent_AsyncEvents::logs" title="Logs" translate="title" module="Aligent_AsyncEvents"
-             parent="Aligent_AsyncEvents::integrations" sortOrder="10" dependsOnModule="Aligent_AsyncEvents"
-             action="async_events/logs" resource="Aligent_AsyncEvents::manage" />
+        <add id="MageOS_AsyncEvents::logs" title="Logs" translate="title" module="MageOS_AsyncEvents"
+             parent="MageOS_AsyncEvents::integrations" sortOrder="10" dependsOnModule="MageOS_AsyncEvents"
+             action="async_events/logs" resource="MageOS_AsyncEvents::manage" />
     </menu>
 </config>

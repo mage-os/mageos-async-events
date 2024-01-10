@@ -1,5 +1,5 @@
 {
-  "name": "aligent/async-events",
+  "name": "mage-os/mageos-async-events",
   "description": "An event-driven flexible async events module that allows you to process any event asynchronously.\n",
   "type": "magento2-module",
   "require": {
@@ -17,14 +17,14 @@
     "magento/magento-coding-standard": "^6.0"
   },
     "license": [
-    "GPL-3.0-only"
+    "MIT"
   ],
   "autoload": {
     "files": [
         "registration.php"
     ],
     "psr-4": {
-      "Aligent\\AsyncEvents\\": ""
+      "MageOS\\AsyncEvents\\": ""
     }
   },
   "scripts": {

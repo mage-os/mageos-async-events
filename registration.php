@@ -2,4 +2,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Aligent_AsyncEvents', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'MageOS_AsyncEvents', __DIR__);

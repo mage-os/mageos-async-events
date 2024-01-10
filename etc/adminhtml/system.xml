@@ -4,7 +4,7 @@
     <system>
         <section id="system" translate="label" type="text" showInDefault="1">
             <tab>advanced</tab>
-            <resource>Aligent_AsyncEvents::manage</resource>
+            <resource>MageOS_AsyncEvents::manage</resource>
             <group id="async_events" translate="label" type="text" showInDefault="1">
                 <label>Async Events</label>
                 <field id="indexing_enabled" translate="label" type="select" sortOrder="05" showInDefault="1">

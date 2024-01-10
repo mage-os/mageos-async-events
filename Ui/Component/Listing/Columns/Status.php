@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Ui\Component\Listing\Columns;
+namespace MageOS\AsyncEvents\Ui\Component\Listing\Columns;
 
 use Magento\Ui\Component\Listing\Columns\Column;
 

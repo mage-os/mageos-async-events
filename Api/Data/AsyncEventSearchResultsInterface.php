@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Api\Data;
+namespace MageOS\AsyncEvents\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
 
 interface AsyncEventSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * @return \Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface[]
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface[]
      */
     public function getItems();
 
     /**
-     * @param \Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface[] $items
+     * @param \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

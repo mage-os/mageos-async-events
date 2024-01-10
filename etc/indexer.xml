@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
-    <indexer id="async_event" view_id="async_event" class="Aligent\AsyncEvents\Model\Indexer\AsyncEventSubscriber">
+    <indexer id="async_event" view_id="async_event" class="MageOS\AsyncEvents\Model\Indexer\AsyncEventSubscriber">
         <title>Asynchronous Events</title>
         <description>Index asynchronous event dispatches</description>
-        <structure class="\Aligent\AsyncEvents\Model\Indexer\IndexStructure"/>
+        <structure class="\MageOS\AsyncEvents\Model\Indexer\IndexStructure"/>
     </indexer>
 </config>

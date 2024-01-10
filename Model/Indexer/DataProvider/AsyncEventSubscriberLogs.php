@@ -1,16 +1,11 @@
 <?php
 
-/**
- * Aligent Consulting
- * Copyright (c) Aligent Consulting (https://www.aligent.com.au)
- */
-
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model\Indexer\DataProvider;
+namespace MageOS\AsyncEvents\Model\Indexer\DataProvider;
 
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\Collection;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog\CollectionFactory as AsyncEventLogCollectionFactory;
 
 class AsyncEventSubscriberLogs
 {

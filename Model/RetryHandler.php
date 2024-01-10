@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Api\AsyncEventRepositoryInterface;
-use Aligent\AsyncEvents\Helper\Config;
-use Aligent\AsyncEvents\Helper\NotifierResult;
-use Aligent\AsyncEvents\Service\AsyncEvent\NotifierFactoryInterface;
-use Aligent\AsyncEvents\Service\AsyncEvent\RetryManager;
+use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
+use MageOS\AsyncEvents\Helper\Config;
+use MageOS\AsyncEvents\Helper\NotifierResult;
+use MageOS\AsyncEvents\Service\AsyncEvent\NotifierFactoryInterface;
+use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\AlreadyExistsException;

@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="async_events" frontName="async_events">
-            <module name="Aligent_AsyncEvents"/>
+            <module name="MageOS_AsyncEvents"/>
         </route>
     </router>
 </config>

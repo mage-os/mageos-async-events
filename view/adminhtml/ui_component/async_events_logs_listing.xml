@@ -19,7 +19,7 @@
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
-        <aclResource>Aligent_AsyncEvents::manage</aclResource>
+        <aclResource>MageOS_AsyncEvents::manage</aclResource>
         <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="async_events_logs_listing_data_source">
             <settings>
                 <requestFieldName>log_id</requestFieldName>
@@ -33,7 +33,7 @@
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
         <filters name="listing_filters"/>
-        <filterSearch name="log_id" class="\Aligent\AsyncEvents\Model\Indexer\LuceneSearch">
+        <filterSearch name="log_id" class="\MageOS\AsyncEvents\Model\Indexer\LuceneSearch">
             <settings>
                 <placeholder>Search using Lucene Query Syntax</placeholder>
             </settings>
@@ -71,7 +71,7 @@
             </settings>
         </column>
 
-        <column name="success" class="Aligent\AsyncEvents\Ui\Component\Listing\Columns\Status" sortOrder="40">
+        <column name="success" class="MageOS\AsyncEvents\Ui\Component\Listing\Columns\Status" sortOrder="40">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Status</label>
@@ -95,6 +95,6 @@
                 <label translate="true">Delivery</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Aligent\AsyncEvents\Ui\Component\Listing\Columns\AsyncEventActions" />
+        <actionsColumn name="actions" class="MageOS\AsyncEvents\Ui\Component\Listing\Columns\AsyncEventActions" />
     </columns>
 </listing>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Block\Adminhtml\Trace\Details;
+namespace MageOS\AsyncEvents\Block\Adminhtml\Trace\Details;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

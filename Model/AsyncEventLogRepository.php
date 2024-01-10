@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Model;
+namespace MageOS\AsyncEvents\Model;
 
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog as AsyncEventLogResource;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog as AsyncEventLogResource;
 use Magento\Framework\Exception\AlreadyExistsException;
 
 class AsyncEventLogRepository

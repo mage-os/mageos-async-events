@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Controller\Adminhtml\Logs;
+namespace MageOS\AsyncEvents\Controller\Adminhtml\Logs;
 
-use Aligent\AsyncEvents\Model\AsyncEventLogFactory;
-use Aligent\AsyncEvents\Model\ResourceModel\AsyncEventLog;
+use MageOS\AsyncEvents\Model\AsyncEventLogFactory;
+use MageOS\AsyncEvents\Model\ResourceModel\AsyncEventLog;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -14,7 +14,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Trace extends Action implements HttpGetActionInterface
 {
-    const MENU_ID = 'Aligent_AsyncEvents::logs';
+    const MENU_ID = 'MageOS_AsyncEvents::logs';
 
     /**
      * @var PageFactory

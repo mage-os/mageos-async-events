@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Api;
+namespace MageOS\AsyncEvents\Api;
 
-use Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventInterface;
-use Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
+use MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface AsyncEventRepositoryInterface
 {
     /**
      * @param int $subscriptionId
-     * @return \Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function get(int $subscriptionId): AsyncEventDisplayInterface;
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Aligent\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventSearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $searchCriteria): AsyncEventSearchResultsInterface;
 
     /**
-     * @param \Aligent\AsyncEvents\Api\Data\AsyncEventInterface $asyncEvent
+     * @param \MageOS\AsyncEvents\Api\Data\AsyncEventInterface $asyncEvent
      * @param bool $checkResources
-     * @return \Aligent\AsyncEvents\Api\Data\AsyncEventDisplayInterface
+     * @return \MageOS\AsyncEvents\Api\Data\AsyncEventDisplayInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Magento\Framework\Exception\AlreadyExistsException

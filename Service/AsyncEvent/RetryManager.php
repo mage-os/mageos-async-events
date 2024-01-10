@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Aligent\AsyncEvents\Service\AsyncEvent;
+namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
-use Aligent\AsyncEvents\Helper\QueueMetadataInterface;
+use MageOS\AsyncEvents\Helper\QueueMetadataInterface;
 use Magento\Framework\Amqp\ConfigPool;
 use Magento\Framework\Amqp\Topology\BindingInstallerInterface;
 use Magento\Framework\Amqp\Topology\QueueInstaller;

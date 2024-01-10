@@ -14,8 +14,8 @@
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="Aligent\AsyncEvents\Block\Adminhtml\Trace\Details\ReplayButton" />
-            <button name="back" class="Aligent\AsyncEvents\Block\Adminhtml\Trace\Details\BackButton" />
+            <button name="save" class="MageOS\AsyncEvents\Block\Adminhtml\Trace\Details\ReplayButton" />
+            <button name="back" class="MageOS\AsyncEvents\Block\Adminhtml\Trace\Details\BackButton" />
         </buttons>
         <layout>
             <navContainerName>left</navContainerName>
@@ -36,7 +36,7 @@
         <settings>
             <submitUrl path="async_events/events/retry" />
         </settings>
-        <dataProvider class="Aligent\AsyncEvents\Ui\DataProvider\AsyncEventsTrace" name="async_events_logs_trace_data_source">
+        <dataProvider class="MageOS\AsyncEvents\Ui\DataProvider\AsyncEventsTrace" name="async_events_logs_trace_data_source">
             <settings>
                 <requestFieldName>uuid</requestFieldName>
                 <primaryFieldName>uuid</primaryFieldName>
@@ -61,19 +61,19 @@
                 </item>
             </argument>
             <settings>
-                <elementTmpl>Aligent_AsyncEvents/content/json</elementTmpl>
+                <elementTmpl>MageOS_AsyncEvents/content/json</elementTmpl>
                 <dataType>text</dataType>
                 <label translate="true">Serialized Data</label>
             </settings>
         </field>
     </fieldset>
     <htmlContent name="async_events_trace_tab_view_content" sortOrder="20">
-        <block class="Aligent\AsyncEvents\Block\Adminhtml\Trace\Tab\View" name="async_events_trace_tab_view" template="Aligent_AsyncEvents::tab/view.phtml">
+        <block class="MageOS\AsyncEvents\Block\Adminhtml\Trace\Tab\View" name="async_events_trace_tab_view" template="MageOS_AsyncEvents::tab/view.phtml">
             <arguments>
                 <argument name="sort_order" xsi:type="number">10</argument>
                 <argument name="tab_label" xsi:type="string" translate="true">Overview</argument>
             </arguments>
-            <block class="Aligent\AsyncEvents\Block\Adminhtml\Trace\Tab\View\Info" name="trace_info" template="Aligent_AsyncEvents::tab/view/info.phtml" />
+            <block class="MageOS\AsyncEvents\Block\Adminhtml\Trace\Tab\View\Info" name="trace_info" template="MageOS_AsyncEvents::tab/view/info.phtml" />
         </block>
     </htmlContent>
 </form>
