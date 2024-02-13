@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
 use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
-use MageOS\AsyncEvents\Helper\NotifierResult;
+use MageOS\AsyncEvents\Api\Data\ResultInterface;
 
 interface NotifierInterface
 {
@@ -14,7 +14,7 @@ interface NotifierInterface
      *
      * @param AsyncEventInterface $asyncEvent
      * @param array $data
-     * @return NotifierResult
+     * @return ResultInterface
      */
-    public function notify(AsyncEventInterface $asyncEvent, array $data): NotifierResult;
+    public function notify(AsyncEventInterface $asyncEvent, array $data): ResultInterface;
 }

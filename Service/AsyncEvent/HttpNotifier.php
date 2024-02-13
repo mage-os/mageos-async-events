@@ -64,11 +64,7 @@ class HttpNotifier implements NotifierInterface
                 ]
             );
 
-            $notifierResult->setSuccess(
-                $response->getStatusCode() >= 200
-                && $response->getStatusCode() < 300
-            );
-
+            $notifierResult->setIsSuccessful(true);
             $notifierResult->setResponseData($response->getBody()->getContents());
 
         } catch (RequestException $exception) {
@@ -76,7 +72,7 @@ class HttpNotifier implements NotifierInterface
              * Catch a RequestException, so we cover even the network layer exceptions which might sometimes
              * not have a response.
              */
-            $notifierResult->setSuccess(false);
+            $notifierResult->setIsSuccessful(false);
 
             if ($exception->hasResponse()) {
                 $response = $exception->getResponse();
@@ -84,6 +80,14 @@ class HttpNotifier implements NotifierInterface
                 $exceptionMessage = !empty($responseContent) ? $responseContent : $response->getReasonPhrase();
 
                 $notifierResult->setResponseData($exceptionMessage);
+                $notifierResult->setIsRetryable(true);
+
+                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After
+                if ($response->hasHeader('Retry-After')) {
+                    $retryAfter = $response->getHeader('Retry-After')[0];
+                    $notifierResult->setRetryAfter((int) $retryAfter);
+                }
+
             } else {
                 $notifierResult->setResponseData(
                     $exception->getMessage()

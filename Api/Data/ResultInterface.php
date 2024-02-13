@@ -12,11 +12,7 @@ interface ResultInterface
 
     public function setIsRetryable(bool $isRetryable): void;
 
-    public function getRetryAfter(): int;
+    public function getRetryAfter(): ?int;
 
     public function setRetryAfter(int $retryAfter): void;
-
-    public function isSuccessful(): bool;
-
-    public function isRetryable(): bool;
 }

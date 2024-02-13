@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace MageOS\AsyncEvents\Helper;
 
 use Magento\Framework\DataObject;
+use MageOS\AsyncEvents\Api\Data\ResultInterface;
 
-class NotifierResult extends DataObject
+class NotifierResult extends DataObject implements ResultInterface
 {
     private const SUCCESS = 'success';
     private const SUBSCRIPTION_ID = 'subscription_id';
     private const RESPONSE_DATA = 'response_data';
     private const UUID = 'uuid';
     private const DATA = 'data';
+    private const IS_RETRYABLE = 'is_retryable';
+    private const RETRY_AFTER = 'retry_after';
 
     /**
      * Getter for success
@@ -117,5 +120,35 @@ class NotifierResult extends DataObject
     public function setAsyncEventData(array $eventData): void
     {
         $this->setData(self::DATA, $eventData);
+    }
+
+    public function getIsSuccessful(): bool
+    {
+        return $this->getSuccess();
+    }
+
+    public function setIsSuccessful(bool $isSuccessful): void
+    {
+        $this->setSuccess($isSuccessful);
+    }
+
+    public function getIsRetryable(): bool
+    {
+        return (bool) $this->getData(self::IS_RETRYABLE);
+    }
+
+    public function setIsRetryable(bool $isRetryable): void
+    {
+        $this->setData(self::IS_RETRYABLE, $isRetryable);
+    }
+
+    public function getRetryAfter(): ?int
+    {
+        return $this->getData(self::RETRY_AFTER);
+    }
+
+    public function setRetryAfter(int $retryAfter): void
+    {
+        $this->setData(self::RETRY_AFTER, $retryAfter);
     }
 }
