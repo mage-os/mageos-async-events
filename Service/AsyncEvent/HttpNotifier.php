@@ -82,11 +82,10 @@ class HttpNotifier implements NotifierInterface
                 $notifierResult->setResponseData($exceptionMessage);
                 $notifierResult->setIsRetryable(true);
 
+                // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Retry-After
                 if ($response->hasHeader('Retry-After')) {
                     $retryAfter = $response->getHeader('Retry-After')[0];
-                    if (is_numeric($retryAfter)) {
-                        $notifierResult->setRetryAfter((int) $retryAfter);
-                    }
+                    $notifierResult->setRetryAfter((int) $retryAfter);
                 }
             } else {
                 $notifierResult->setResponseData(
