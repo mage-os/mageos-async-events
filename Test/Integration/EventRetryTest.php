@@ -22,11 +22,11 @@ class EventRetryTest extends TestCase
     /** @var PublisherInterface|null */
     private ?PublisherInterface $publisher;
 
-    /** @var PublisherConsumerController|null */
-    private ?PublisherConsumerController $publisherConsumerController;
-
     /** @var Json|null */
     private ?Json $json;
+
+    /** @var ResourceConnection|null */
+    private ?ResourceConnection $connection;
 
     protected function setUp(): void
     {
@@ -54,7 +54,6 @@ class EventRetryTest extends TestCase
      *
      * @magentoDataFixture MageOS_AsyncEvents::Test/_files/http_async_events.php
      * @magentoDbIsolation disabled
-     * @magentoConfigFixture default/system/async_events/max_deaths 3
      */
     public function testRetry()
     {
@@ -68,18 +67,23 @@ class EventRetryTest extends TestCase
             ]
         );
 
-        $this->publisherConsumerController = Bootstrap::getObjectManager()->create(
+        $consumerInitParams = Bootstrap::getInstance()->getAppInitParams();
+
+        $consumerInitParams['TESTS_BASE_DIR'] = INTEGRATION_TESTS_DIR;
+        $consumerInitParams['INTEGRATION_TESTS_CLI_AUTOLOADER'] = INTEGRATION_TESTS_DIR . '/framework/autoload.php';
+
+        $publisherConsumerController = Bootstrap::getObjectManager()->create(
             PublisherConsumerController::class,
             [
                 'consumers' => ['event.trigger.consumer', 'event.retry.consumer'],
                 'logFilePath' => TESTS_TEMP_DIR . "/MessageQueueTestLog.txt",
                 'maxMessages' => 10,
-                'appInitParams' => Bootstrap::getInstance()->getAppInitParams()
+                'appInitParams' => $consumerInitParams
             ]
         );
 
         try {
-            $this->publisherConsumerController->startConsumers();
+            $publisherConsumerController->startConsumers();
             sleep(16);
         } catch (EnvironmentPreconditionException $e) {
             $this->markTestSkipped($e->getMessage());
@@ -88,7 +92,7 @@ class EventRetryTest extends TestCase
                 $e->getMessage()
             );
         } finally {
-            $this->publisherConsumerController->stopConsumers();
+            $publisherConsumerController->stopConsumers();
         }
 
         $table = $this->connection->getTableName('async_event_subscriber_log');
@@ -100,8 +104,10 @@ class EventRetryTest extends TestCase
 
         $events = $connection->fetchAll($select);
 
+        $this->assertNotEmpty($events);
+
         foreach ($events as $event) {
-            // An uuid batch should be retired for 3 times after the first attempt. 1 + 3
+            // A batch should be retired for 3 times after the first attempt. 1 + 3
             $this->assertEquals(4, $event['events']);
         }
     }
