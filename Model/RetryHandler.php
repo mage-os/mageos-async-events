@@ -56,8 +56,6 @@ class RetryHandler
         $data = $message[RetryManager::CONTENT];
         $uuid = $message[RetryManager::UUID];
 
-        var_dump($data);
-
         $subscriptionId = (int) $subscriptionId;
         $deathCount = (int) $deathCount;
         $maxDeaths = $this->config->getMaximumDeaths();
