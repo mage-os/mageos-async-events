@@ -98,7 +98,7 @@ jobs:
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: "Cache Composer Packages"
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: "composer | v5 | '' | ${{ hashFiles('composer.lock') }}"
           path: ${{ steps.composer-cache.outputs.dir }}
