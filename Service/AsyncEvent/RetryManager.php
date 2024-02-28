@@ -73,8 +73,13 @@ class RetryManager implements RetryManagementInterface
      * @param int|null $backoff
      * @return void
      */
-    public function place(int $deathCount, int $subscriptionId, CloudEventImmutable $event, string $uuid, ?int $backoff): void
-    {
+    public function place(
+        int $deathCount,
+        int $subscriptionId,
+        CloudEventImmutable $event,
+        string $uuid,
+        ?int $backoff
+    ): void {
         if (!$backoff) {
             $backoff = $this->calculateBackoff($deathCount);
         }

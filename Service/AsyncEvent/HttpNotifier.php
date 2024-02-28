@@ -29,11 +29,10 @@ class HttpNotifier implements NotifierInterface
      * @param Normalizer $normalizer
      */
     public function __construct(
-        private readonly Client             $client,
+        private readonly Client $client,
         private readonly EncryptorInterface $encryptor,
         private readonly Normalizer $normalizer
-    )
-    {
+    ) {
     }
 
     /**
