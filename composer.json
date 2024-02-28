@@ -4,7 +4,8 @@
   "type": "magento2-module",
   "require": {
     "php":  ">=8.1",
-    "magento/framework": "*"
+    "magento/framework": "*",
+    "cloudevents/sdk-php": "^1.1"
   },
   "repositories": [
     {
@@ -34,5 +35,11 @@
     "post-update-cmd": [
       "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/)"
     ]
+  },
+  "config": {
+    "allow-plugins": {
+      "magento/composer-dependency-version-audit-plugin": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

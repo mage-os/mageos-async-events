@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Model;
 
+use CloudEvents\Exceptions\InvalidPayloadSyntaxException;
+use CloudEvents\Exceptions\MissingAttributeException;
+use CloudEvents\Exceptions\UnsupportedSpecVersionException;
+use CloudEvents\V1\CloudEventImmutable;
+use CloudEvents\V1\CloudEventInterface;
 use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
 use MageOS\AsyncEvents\Helper\Config;
 use MageOS\AsyncEvents\Helper\NotifierResult;
@@ -12,6 +17,7 @@ use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Serialize\SerializerInterface;
+use CloudEvents\Serializers\JsonDeserializer;
 
 class RetryHandler
 {
@@ -50,11 +56,13 @@ class RetryHandler
         $data = $message[RetryManager::CONTENT];
         $uuid = $message[RetryManager::UUID];
 
+        var_dump($data);
+
         $subscriptionId = (int) $subscriptionId;
         $deathCount = (int) $deathCount;
         $maxDeaths = $this->config->getMaximumDeaths();
 
-        $data = $this->serializer->unserialize($data);
+        $event = CloudEventImmutable::createFromInterface(JsonDeserializer::create()->deserializeStructured($data));
 
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter('status', 1)
@@ -66,9 +74,9 @@ class RetryHandler
         foreach ($asyncEvents as $asyncEvent) {
             $handler = $asyncEvent->getMetadata();
             $notifier = $this->notifierFactory->create($handler);
-            $result = $notifier->notify($asyncEvent, [
-                'data' => $data
-            ]);
+
+            $result = $notifier->notify($asyncEvent, $event);
+
             $result->setUuid($uuid);
             $this->log($result);
 
@@ -77,12 +85,12 @@ class RetryHandler
                     $this->retryManager->place(
                         ++$deathCount,
                         $subscriptionId,
-                        $data,
+                        $event,
                         $uuid,
                         $result->getRetryAfter()
                     );
                 } else {
-                    $this->retryManager->kill($subscriptionId, $data);
+                    $this->retryManager->kill($subscriptionId, $event);
                 }
             }
         }

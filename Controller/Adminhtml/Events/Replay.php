@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Controller\Adminhtml\Events;
 
+use CloudEvents\Serializers\JsonDeserializer;
+use CloudEvents\V1\CloudEventImmutable;
 use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
@@ -42,7 +44,11 @@ class Replay extends Action implements HttpPostActionInterface
 
         $this->retryManager->init(
             (int) $data['subscription_id'],
-            $this->serializer->unserialize($data['serialized_data'])['data'],
+            CloudEventImmutable::createFromInterface(
+                JsonDeserializer::create()->deserializeStructured(
+                    $data['serialized_data']
+                )
+            ),
             $data['uuid']
         );
 

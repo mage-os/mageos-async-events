@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
+use CloudEvents\Serializers\JsonSerializer;
+use CloudEvents\V1\CloudEventImmutable;
 use MageOS\AsyncEvents\Api\RetryManagementInterface;
 use MageOS\AsyncEvents\Helper\QueueMetadataInterface;
 use Magento\Framework\Amqp\ConfigPool;
@@ -11,7 +13,6 @@ use Magento\Framework\Amqp\Topology\BindingInstallerInterface;
 use Magento\Framework\Amqp\Topology\QueueInstaller;
 use Magento\Framework\MessageQueue\Topology\Config\ExchangeConfigItem\BindingFactory;
 use Magento\Framework\MessageQueue\Topology\Config\QueueConfigItemFactory;
-use Magento\Framework\Serialize\SerializerInterface;
 
 class RetryManager implements RetryManagementInterface
 {
@@ -27,7 +28,6 @@ class RetryManager implements RetryManagementInterface
      * @param AmqpPublisher $publisher
      * @param QueueConfigItemFactory $queueConfigItemFactory
      * @param BindingFactory $bindingFactory
-     * @param SerializerInterface $serializer
      */
     public function __construct(
         private readonly ConfigPool $configPool,
@@ -36,7 +36,6 @@ class RetryManager implements RetryManagementInterface
         private readonly AmqpPublisher $publisher,
         private readonly QueueConfigItemFactory $queueConfigItemFactory,
         private readonly BindingFactory $bindingFactory,
-        private readonly SerializerInterface $serializer
     ) {
     }
 
@@ -44,11 +43,11 @@ class RetryManager implements RetryManagementInterface
      * Start the chain for retrying an asynchronous event that has failed
      *
      * @param int $subscriptionId
-     * @param mixed $data
+     * @param CloudEventImmutable $event
      * @param string $uuid
      * @return void
      */
-    public function init(int $subscriptionId, mixed $data, string $uuid): void
+    public function init(int $subscriptionId, CloudEventImmutable $event, string $uuid): void
     {
         $this->assertDelayQueue(
             1,
@@ -59,7 +58,7 @@ class RetryManager implements RetryManagementInterface
         $this->publisher->publish(QueueMetadataInterface::RETRY_INIT_ROUTING_KEY, [
             self::SUBSCRIPTION_ID => $subscriptionId,
             self::DEATH_COUNT => 1,
-            self::CONTENT => $this->serializer->serialize($data),
+            self::CONTENT => JsonSerializer::create()->serializeStructured($event),
             self::UUID => $uuid
         ]);
     }
@@ -69,12 +68,12 @@ class RetryManager implements RetryManagementInterface
      *
      * @param int $deathCount
      * @param int $subscriptionId
-     * @param mixed $data
+     * @param CloudEventImmutable $event
      * @param string $uuid
      * @param int|null $backoff
      * @return void
      */
-    public function place(int $deathCount, int $subscriptionId, mixed $data, string $uuid, ?int $backoff): void
+    public function place(int $deathCount, int $subscriptionId, CloudEventImmutable $event, string $uuid, ?int $backoff): void
     {
         if (!$backoff) {
             $backoff = $this->calculateBackoff($deathCount);
@@ -87,7 +86,7 @@ class RetryManager implements RetryManagementInterface
         $this->publisher->publish($retryRoutingKey, [
             self::SUBSCRIPTION_ID => $subscriptionId,
             self::DEATH_COUNT =>  $deathCount,
-            self::CONTENT => $this->serializer->serialize($data),
+            self::CONTENT => JsonSerializer::create()->serializeStructured($event),
             self::UUID => $uuid
         ]);
     }
@@ -96,17 +95,17 @@ class RetryManager implements RetryManagementInterface
      * Kill the asynchronous event and send it to the DEAD LETTERS department
      *
      * @param int $subscriptionId
-     * @param mixed $data
+     * @param CloudEventImmutable $event
      * @return void
      */
-    public function kill(int $subscriptionId, mixed $data): void
+    public function kill(int $subscriptionId, CloudEventImmutable $event): void
     {
         $this->publisher->publish(
             QueueMetadataInterface::DEAD_LETTER_KILL_KEY,
             [
                 self::SUBSCRIPTION_ID => $subscriptionId,
                 self::DEATH_COUNT => 0,
-                self::CONTENT => $this->serializer->serialize($data)
+                self::CONTENT => JsonSerializer::create()->serializeStructured($event)
             ]
         );
     }

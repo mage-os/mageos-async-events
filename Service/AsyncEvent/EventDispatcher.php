@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
+use CloudEvents\V1\CloudEventImmutable;
 use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
 use MageOS\AsyncEvents\Helper\NotifierResult;
 use MageOS\AsyncEvents\Model\AsyncEvent;
@@ -13,6 +14,7 @@ use MageOS\AsyncEvents\Model\AsyncEventLogRepository;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\DataObject\IdentityGeneratorInterface;
 use Magento\Framework\Exception\AlreadyExistsException;
+use CloudEvents\Serializers\JsonSerializer;
 
 class EventDispatcher
 {
@@ -62,21 +64,27 @@ class EventDispatcher
             $handler = $asyncEvent->getMetadata();
 
             $notifier = $this->notifierFactory->create($handler);
+            $uuid = $this->identityService->generateId();
+
+            $event = new CloudEventImmutable(
+                $uuid,
+                (string) $storeId,
+                $eventName,
+                $output,
+                'application/json'
+            );
 
             $result = $notifier->notify(
                 $asyncEvent,
-                [
-                    'data' => $output
-                ]
+                $event
             );
 
-            $uuid = $this->identityService->generateId();
             $result->setUuid($uuid);
 
             $this->log($result);
 
             if (!$result->getIsSuccessful() && $result->getIsRetryable()) {
-                $this->retryManager->init($asyncEvent->getSubscriptionId(), $output, $uuid);
+                $this->retryManager->init($asyncEvent->getSubscriptionId(), $event, $uuid);
             }
         }
     }
