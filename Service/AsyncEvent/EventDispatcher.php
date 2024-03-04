@@ -63,7 +63,7 @@ class EventDispatcher
 
             $notifier = $this->notifierFactory->create($handler);
 
-            $response = $notifier->notify(
+            $result = $notifier->notify(
                 $asyncEvent,
                 [
                     'data' => $output
@@ -71,11 +71,11 @@ class EventDispatcher
             );
 
             $uuid = $this->identityService->generateId();
-            $response->setUuid($uuid);
+            $result->setUuid($uuid);
 
-            $this->log($response);
+            $this->log($result);
 
-            if (!$response->getSuccess()) {
+            if (!$result->getIsSuccessful() && $result->getIsRetryable()) {
                 $this->retryManager->init($asyncEvent->getSubscriptionId(), $output, $uuid);
             }
         }

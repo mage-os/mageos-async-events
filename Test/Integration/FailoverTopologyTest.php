@@ -1,6 +1,5 @@
 <?php
 
-
 declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Test\Integration;
@@ -51,15 +50,15 @@ class FailoverTopologyTest extends TestCase
         /**
          * Place events at different death levels
          */
-        $this->retryManager->place(2, 1, 'test', 'uuid');
-        $this->retryManager->place(3, 1, 'test', 'uuid');
-        $this->retryManager->place(4, 1, 'test', 'uuid');
-        $this->retryManager->place(5, 1, 'test', 'uuid');
-        $this->retryManager->place(6, 1, 'test', 'uuid');
-        $this->retryManager->place(7, 1, 'test', 'uuid');
-        $this->retryManager->place(8, 1, 'test', 'uuid');
-        $this->retryManager->place(9, 1, 'test', 'uuid');
-        $this->retryManager->place(10, 1, 'test', 'uuid');
+        $this->retryManager->place(2, 1, 'test', 'uuid', null);
+        $this->retryManager->place(3, 1, 'test', 'uuid', null);
+        $this->retryManager->place(4, 1, 'test', 'uuid', null);
+        $this->retryManager->place(5, 1, 'test', 'uuid', null);
+        $this->retryManager->place(6, 1, 'test', 'uuid', null);
+        $this->retryManager->place(7, 1, 'test', 'uuid', null);
+        $this->retryManager->place(8, 1, 'test', 'uuid', null);
+        $this->retryManager->place(9, 1, 'test', 'uuid', null);
+        $this->retryManager->place(10, 1, 'test', 'uuid', null);
 
         $bindings = $this->helper->getExchangeBindings('event.failover');
 

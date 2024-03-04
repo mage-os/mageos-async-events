@@ -11,7 +11,7 @@ $connection = $resource->getConnection();
 $connection->insertOnDuplicate('async_event_subscriber', [
     'subscription_id' => 1,
     'event_name' => 'example.event',
-    'recipient_url' => 'https://mock.codes/500',
+    'recipient_url' => 'https://mock.codes/503',
     'status' => 1,
     'metadata' => 'http',
     'verification_token' => 'secret',

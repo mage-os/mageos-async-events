@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Service\AsyncEvent;
 
+use MageOS\AsyncEvents\Api\RetryManagementInterface;
 use MageOS\AsyncEvents\Helper\QueueMetadataInterface;
 use Magento\Framework\Amqp\ConfigPool;
 use Magento\Framework\Amqp\Topology\BindingInstallerInterface;
@@ -12,7 +13,7 @@ use Magento\Framework\MessageQueue\Topology\Config\ExchangeConfigItem\BindingFac
 use Magento\Framework\MessageQueue\Topology\Config\QueueConfigItemFactory;
 use Magento\Framework\Serialize\SerializerInterface;
 
-class RetryManager
+class RetryManager implements RetryManagementInterface
 {
     public const DEATH_COUNT = 'death_count';
     public const SUBSCRIPTION_ID = 'subscription_id';
@@ -70,11 +71,15 @@ class RetryManager
      * @param int $subscriptionId
      * @param mixed $data
      * @param string $uuid
+     * @param int|null $backoff
      * @return void
      */
-    public function place(int $deathCount, int $subscriptionId, mixed $data, string $uuid): void
+    public function place(int $deathCount, int $subscriptionId, mixed $data, string $uuid, ?int $backoff): void
     {
-        $backoff = $this->calculateBackoff($deathCount);
+        if (!$backoff) {
+            $backoff = $this->calculateBackoff($deathCount);
+        }
+
         $queueName = 'event.delay.' . $backoff;
         $retryRoutingKey = 'event.retry.' . $backoff;
 
@@ -120,6 +125,7 @@ class RetryManager
     private function assertDelayQueue(int $backoff, string $queueName, string $retryRoutingKey): void
     {
         $config = $this->configPool->get('amqp');
+        $backoff = abs($backoff);
 
         $queueConfigItem = $this->queueConfigItemFactory->create();
         $queueConfigItem->setData([

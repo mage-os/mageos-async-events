@@ -66,15 +66,21 @@ class RetryHandler
         foreach ($asyncEvents as $asyncEvent) {
             $handler = $asyncEvent->getMetadata();
             $notifier = $this->notifierFactory->create($handler);
-            $response = $notifier->notify($asyncEvent, [
+            $result = $notifier->notify($asyncEvent, [
                 'data' => $data
             ]);
-            $response->setUuid($uuid);
-            $this->log($response);
+            $result->setUuid($uuid);
+            $this->log($result);
 
-            if (!$response->getSuccess()) {
+            if (!$result->getIsSuccessful() && $result->getIsRetryable()) {
                 if ($deathCount < $maxDeaths) {
-                    $this->retryManager->place($deathCount + 1, $subscriptionId, $data, $uuid);
+                    $this->retryManager->place(
+                        ++$deathCount,
+                        $subscriptionId,
+                        $data,
+                        $uuid,
+                        $result->getRetryAfter()
+                    );
                 } else {
                     $this->retryManager->kill($subscriptionId, $data);
                 }
