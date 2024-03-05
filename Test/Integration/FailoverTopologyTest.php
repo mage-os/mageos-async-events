@@ -40,7 +40,7 @@ class FailoverTopologyTest extends TestCase
         $this->assertArrayHasKey('event.failover', $exchanges);
 
         $fakeEvent = new CloudEventImmutable(
-            '',
+            'ada460b0-bb14-4f97-b46c-a544ce4266f8',
             '0',
             'example.event',
             [
