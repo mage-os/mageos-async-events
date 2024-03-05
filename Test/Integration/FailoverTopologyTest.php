@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Test\Integration;
 
-use MageOS\AsyncEvents\Helper\QueueMetadataInterface;
+use CloudEvents\V1\CloudEventImmutable;
 use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
 use Magento\TestFramework\Helper\Amqp;
 use Magento\TestFramework\Helper\Bootstrap;
@@ -39,26 +39,37 @@ class FailoverTopologyTest extends TestCase
 
         $this->assertArrayHasKey('event.failover', $exchanges);
 
+        $fakeEvent = new CloudEventImmutable(
+            'ada460b0-bb14-4f97-b46c-a544ce4266f8',
+            '0',
+            'example.event',
+            [
+                'first_name' => 'Rey',
+                'last_name' => 'Skywalker'
+            ],
+            'application/json'
+        );
+
         /**
          * Because the first delay queue has a life of 2 seconds, create a few
          * messages so that it's alive a little longer.
          */
-        $this->retryManager->init(1, 'test', 'uuid');
-        $this->retryManager->init(1, 'test', 'uuid');
-        $this->retryManager->init(1, 'test', 'uuid');
+        $this->retryManager->init(1, $fakeEvent, 'uuid');
+        $this->retryManager->init(1, $fakeEvent, 'uuid');
+        $this->retryManager->init(1, $fakeEvent, 'uuid');
 
         /**
          * Place events at different death levels
          */
-        $this->retryManager->place(2, 1, 'test', 'uuid', null);
-        $this->retryManager->place(3, 1, 'test', 'uuid', null);
-        $this->retryManager->place(4, 1, 'test', 'uuid', null);
-        $this->retryManager->place(5, 1, 'test', 'uuid', null);
-        $this->retryManager->place(6, 1, 'test', 'uuid', null);
-        $this->retryManager->place(7, 1, 'test', 'uuid', null);
-        $this->retryManager->place(8, 1, 'test', 'uuid', null);
-        $this->retryManager->place(9, 1, 'test', 'uuid', null);
-        $this->retryManager->place(10, 1, 'test', 'uuid', null);
+        $this->retryManager->place(2, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(3, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(4, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(5, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(6, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(7, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(8, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(9, 1, $fakeEvent, 'uuid', null);
+        $this->retryManager->place(10, 1, $fakeEvent, 'uuid', null);
 
         $bindings = $this->helper->getExchangeBindings('event.failover');
 

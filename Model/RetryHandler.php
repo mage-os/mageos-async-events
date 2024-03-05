@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Model;
 
+use CloudEvents\Serializers\JsonDeserializer;
+use CloudEvents\V1\CloudEventImmutable;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Exception\AlreadyExistsException;
+use Magento\Framework\Serialize\SerializerInterface;
 use MageOS\AsyncEvents\Api\AsyncEventRepositoryInterface;
 use MageOS\AsyncEvents\Helper\Config;
 use MageOS\AsyncEvents\Helper\NotifierResult;
 use MageOS\AsyncEvents\Service\AsyncEvent\NotifierFactoryInterface;
 use MageOS\AsyncEvents\Service\AsyncEvent\RetryManager;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Exception\AlreadyExistsException;
-use Magento\Framework\Serialize\SerializerInterface;
 
 class RetryHandler
 {
@@ -26,14 +28,14 @@ class RetryHandler
      * @param Config $config
      */
     public function __construct(
-        private readonly SearchCriteriaBuilder         $searchCriteriaBuilder,
+        private readonly SearchCriteriaBuilder $searchCriteriaBuilder,
         private readonly AsyncEventRepositoryInterface $asyncEventRepository,
-        private readonly NotifierFactoryInterface      $notifierFactory,
-        private readonly AsyncEventLogFactory          $asyncEventLogFactory,
-        private readonly AsyncEventLogRepository       $asyncEventLogRepository,
-        private readonly RetryManager                  $retryManager,
-        private readonly SerializerInterface           $serializer,
-        private readonly Config                        $config
+        private readonly NotifierFactoryInterface $notifierFactory,
+        private readonly AsyncEventLogFactory $asyncEventLogFactory,
+        private readonly AsyncEventLogRepository $asyncEventLogRepository,
+        private readonly RetryManager $retryManager,
+        private readonly SerializerInterface $serializer,
+        private readonly Config $config
     ) {
     }
 
@@ -50,11 +52,11 @@ class RetryHandler
         $data = $message[RetryManager::CONTENT];
         $uuid = $message[RetryManager::UUID];
 
-        $subscriptionId = (int) $subscriptionId;
-        $deathCount = (int) $deathCount;
+        $subscriptionId = (int)$subscriptionId;
+        $deathCount = (int)$deathCount;
         $maxDeaths = $this->config->getMaximumDeaths();
 
-        $data = $this->serializer->unserialize($data);
+        $event = CloudEventImmutable::createFromInterface(JsonDeserializer::create()->deserializeStructured($data));
 
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter('status', 1)
@@ -66,9 +68,9 @@ class RetryHandler
         foreach ($asyncEvents as $asyncEvent) {
             $handler = $asyncEvent->getMetadata();
             $notifier = $this->notifierFactory->create($handler);
-            $result = $notifier->notify($asyncEvent, [
-                'data' => $data
-            ]);
+
+            $result = $notifier->notify($asyncEvent, $event);
+
             $result->setUuid($uuid);
             $this->log($result);
 
@@ -77,12 +79,12 @@ class RetryHandler
                     $this->retryManager->place(
                         ++$deathCount,
                         $subscriptionId,
-                        $data,
+                        $event,
                         $uuid,
                         $result->getRetryAfter()
                     );
                 } else {
-                    $this->retryManager->kill($subscriptionId, $data);
+                    $this->retryManager->kill($subscriptionId, $event);
                 }
             }
         }
