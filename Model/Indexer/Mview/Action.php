@@ -10,16 +10,10 @@ use Magento\Framework\Mview\ActionInterface;
 class Action implements ActionInterface
 {
     /**
-     * @var IndexerInterfaceFactory
-     */
-    private $indexerFactory;
-
-    /**
      * @param IndexerInterfaceFactory $indexerFactory
      */
-    public function __construct(IndexerInterfaceFactory $indexerFactory)
+    public function __construct(private readonly IndexerInterfaceFactory $indexerFactory)
     {
-        $this->indexerFactory = $indexerFactory;
     }
 
     /**

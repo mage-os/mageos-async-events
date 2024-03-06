@@ -13,8 +13,6 @@ interface QueueMetadataInterface
 
     public const FAILOVER_EXCHANGE = 'event.failover';
 
-    public const RETRY_INIT_QUEUE = 'event.delay.1';
-
     public const RETRY_INIT_ROUTING_KEY = 'event.retry.init';
 
     public const DEAD_LETTER_ROUTING_KEY = 'event.retry';

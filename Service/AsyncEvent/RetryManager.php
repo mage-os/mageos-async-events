@@ -40,12 +40,7 @@ class RetryManager implements RetryManagementInterface
     }
 
     /**
-     * Start the chain for retrying an asynchronous event that has failed
-     *
-     * @param int $subscriptionId
-     * @param CloudEventImmutable $event
-     * @param string $uuid
-     * @return void
+     * @inheritDoc
      */
     public function init(int $subscriptionId, CloudEventImmutable $event, string $uuid): void
     {
@@ -64,14 +59,7 @@ class RetryManager implements RetryManagementInterface
     }
 
     /**
-     * Place an asynchronous event to be retried for the nth time
-     *
-     * @param int $deathCount
-     * @param int $subscriptionId
-     * @param CloudEventImmutable $event
-     * @param string $uuid
-     * @param int|null $backoff
-     * @return void
+     * @inheritDoc
      */
     public function place(
         int $deathCount,
@@ -97,11 +85,7 @@ class RetryManager implements RetryManagementInterface
     }
 
     /**
-     * Kill the asynchronous event and send it to the DEAD LETTERS department
-     *
-     * @param int $subscriptionId
-     * @param CloudEventImmutable $event
-     * @return void
+     * @inheritDoc
      */
     public function kill(int $subscriptionId, CloudEventImmutable $event): void
     {
