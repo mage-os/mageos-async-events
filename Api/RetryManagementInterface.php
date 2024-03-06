@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageOS\AsyncEvents\Api;
 
 use CloudEvents\V1\CloudEventImmutable as Event;

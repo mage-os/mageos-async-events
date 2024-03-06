@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageOS\AsyncEvents\Cron;
 
 use MageOS\AsyncEvents\Model\AsyncEventCleanSubscriberLogs;
