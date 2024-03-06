@@ -20,6 +20,8 @@ class NotifierResult extends DataObject implements ResultInterface
     /**
      * Getter for success
      *
+     * @deprecated use getIsSuccessful instead
+     * @see NotifierResult::getIsSuccessful
      * @return bool
      */
     public function getSuccess(): bool
@@ -30,6 +32,8 @@ class NotifierResult extends DataObject implements ResultInterface
     /**
      * Setter for success
      *
+     * @deprecated use setIsSuccessful instead
+     * @see NotifierResult::setIsSuccessful
      * @param bool $success
      * @return void
      */
@@ -122,31 +126,49 @@ class NotifierResult extends DataObject implements ResultInterface
         $this->setData(self::DATA, $eventData);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getIsSuccessful(): bool
     {
         return $this->getSuccess();
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setIsSuccessful(bool $isSuccessful): void
     {
         $this->setSuccess($isSuccessful);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getIsRetryable(): bool
     {
         return (bool) $this->getData(self::IS_RETRYABLE);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setIsRetryable(bool $isRetryable): void
     {
         $this->setData(self::IS_RETRYABLE, $isRetryable);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getRetryAfter(): ?int
     {
         return $this->getData(self::RETRY_AFTER);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function setRetryAfter(int $retryAfter): void
     {
         $this->setData(self::RETRY_AFTER, $retryAfter);

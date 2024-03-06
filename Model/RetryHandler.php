@@ -100,7 +100,7 @@ class RetryHandler
     {
         /** @var AsyncEventLog $asyncEventLog */
         $asyncEventLog = $this->asyncEventLogFactory->create();
-        $asyncEventLog->setSuccess($response->getSuccess());
+        $asyncEventLog->setSuccess($response->getIsSuccessful());
         $asyncEventLog->setSubscriptionId($response->getSubscriptionId());
         $asyncEventLog->setResponseData($response->getResponseData());
         $asyncEventLog->setUuid($response->getUuid());

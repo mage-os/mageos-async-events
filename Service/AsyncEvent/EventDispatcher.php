@@ -80,6 +80,7 @@ class EventDispatcher
             );
 
             $result->setUuid($uuid);
+            $result->setSubscriptionId($asyncEvent->getSubscriptionId());
 
             $this->log($result);
 
@@ -99,7 +100,7 @@ class EventDispatcher
     {
         /** @var AsyncEventLog $asyncEventLog */
         $asyncEventLog = $this->asyncEventLogFactory->create();
-        $asyncEventLog->setSuccess($response->getSuccess());
+        $asyncEventLog->setSuccess($response->getIsSuccessful());
         $asyncEventLog->setSubscriptionId($response->getSubscriptionId());
         $asyncEventLog->setResponseData($response->getResponseData());
         $asyncEventLog->setUuid($response->getUuid());

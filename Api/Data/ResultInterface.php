@@ -7,6 +7,36 @@ namespace MageOS\AsyncEvents\Api\Data;
 interface ResultInterface
 {
     /**
+     * Getter for uuid
+     *
+     * @return string
+     */
+    public function getUuid(): string;
+
+    /**
+     * Setter for uuid
+     *
+     * @param string $uuid
+     * @return void
+     */
+    public function setUuid(string $uuid): void;
+
+    /**
+     * Getter for subscription_id
+     *
+     * @return int
+     */
+    public function getSubscriptionId(): int;
+
+    /**
+     * Setter for subscription_id
+     *
+     * @param int $subscriptionId
+     * @return void
+     */
+    public function setSubscriptionId(int $subscriptionId): void;
+
+    /**
      * Getter for is_successful
      *
      * @return bool

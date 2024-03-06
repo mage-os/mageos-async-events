@@ -19,7 +19,7 @@ class ExampleNotifier implements NotifierInterface
 //        $data = "Example notifier with some data: " . $data["objectId"];
 
         $result = new NotifierResult();
-        $result->setSuccess(true);
+        $result->setIsSuccessful(true);
         $result->setSubscriptionId($asyncEvent->getSubscriptionId());
         $result->setResponseData('ok');
 
