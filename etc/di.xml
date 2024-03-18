@@ -104,6 +104,7 @@
 
     <type name="\MageOS\AsyncEvents\Model\Indexer\IndexStructure">
         <arguments>
+            <argument name="adapter" xsi:type="object">\Magento\Elasticsearch\Model\Adapter\Elasticsearch\Proxy</argument>
             <argument name="scopeResolver" xsi:type="object" shared="false">\MageOS\AsyncEvents\Model\Resolver\AsyncEvent</argument>
         </arguments>
     </type>
@@ -141,7 +142,7 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="asyncEventSearchAdapter" type="Magento\Elasticsearch\Model\Adapter\Elasticsearch">
+    <virtualType name="asyncEventSearchAdapter" type="Magento\Elasticsearch\Model\Adapter\Elasticsearch\Proxy">
         <arguments>
             <argument name="batchDocumentDataMapper" xsi:type="object">\MageOS\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper</argument>
         </arguments>
