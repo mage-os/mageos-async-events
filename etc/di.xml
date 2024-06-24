@@ -97,24 +97,12 @@
     <type name="MageOS\AsyncEvents\Model\Indexer\AsyncEventSubscriber">
         <arguments>
             <argument name="dimensionProvider" xsi:type="object" shared="false">\MageOS\AsyncEvents\Model\Indexer\AsyncEventDimensionProvider</argument>
-            <argument name="adapter" xsi:type="object">asyncEventSearchAdapter</argument>
-            <argument name="indexStructure" xsi:type="object">asyncEventIndexStructure</argument>
         </arguments>
     </type>
 
     <type name="\MageOS\AsyncEvents\Model\Indexer\IndexStructure">
         <arguments>
             <argument name="scopeResolver" xsi:type="object" shared="false">\MageOS\AsyncEvents\Model\Resolver\AsyncEvent</argument>
-        </arguments>
-    </type>
-
-    <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapper\DataMapperFactory">
-        <arguments>
-            <argument name="dataMappers" xsi:type="array">
-                <item name="async_event" xsi:type="string">
-                    \MageOS\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper
-                </item>
-            </argument>
         </arguments>
     </type>
 
@@ -132,18 +120,4 @@
         <plugin name="map_string_scope_to_int"
                 type="MageOS\AsyncEvents\Plugin\MapStringScopeToInt"/>
     </type>
-
-    <virtualType name="asyncEventIndexStructure" type="Magento\Elasticsearch\Model\Indexer\IndexStructure">
-        <arguments>
-            <argument name="adapter" xsi:type="object">
-                asyncEventSearchAdapter
-            </argument>
-        </arguments>
-    </virtualType>
-
-    <virtualType name="asyncEventSearchAdapter" type="Magento\Elasticsearch\Model\Adapter\Elasticsearch">
-        <arguments>
-            <argument name="batchDocumentDataMapper" xsi:type="object">\MageOS\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper</argument>
-        </arguments>
-    </virtualType>
 </config>

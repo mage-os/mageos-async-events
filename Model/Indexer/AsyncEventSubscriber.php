@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace MageOS\AsyncEvents\Model\Indexer;
 
-use Magento\Elasticsearch\Model\Adapter\Elasticsearch;
+use Magento\Elasticsearch\Model\Adapter\ElasticsearchFactory;
 use MageOS\AsyncEvents\Helper\Config;
+use MageOS\AsyncEvents\Model\Adapter\BatchDataMapper\AsyncEventLogMapper;
 use MageOS\AsyncEvents\Model\Indexer\DataProvider\AsyncEventSubscriberLogs;
 use MageOS\AsyncEvents\Model\Resolver\AsyncEvent;
 use ArrayIterator;
@@ -59,7 +60,8 @@ class AsyncEventSubscriber implements
      * @param AsyncEvent $asyncEventScopeResolver
      * @param IndexStructure $indexStructure
      * @param Config $config
-     * @param Elasticsearch $adapter
+     * @param ElasticsearchFactory $adapterFactory
+     * @param AsyncEventLogMapper $loggerMapper
      * @param array $data
      * @param int|null $batchSize
      * @param DeploymentConfig|null $deploymentConfig
@@ -71,7 +73,8 @@ class AsyncEventSubscriber implements
         private readonly AsyncEvent $asyncEventScopeResolver,
         private readonly IndexStructureInterface $indexStructure,
         private readonly Config $config,
-        private readonly Elasticsearch $adapter,
+        private readonly ElasticsearchFactory $adapterFactory,
+        private readonly AsyncEventLogMapper $loggerMapper,
         private readonly array $data,
         int $batchSize = null,
         DeploymentConfig $deploymentConfig = null
@@ -99,10 +102,14 @@ class AsyncEventSubscriber implements
             return;
         }
 
+        $adapter = $this->adapterFactory->create([
+            'batchDocumentDataMapper' => $this->loggerMapper
+        ]);
+
         $saveHandler = $this->indexerHandlerFactory->create(
             [
                 'data' => $this->data,
-                'adapter' => $this->adapter,
+                'adapter' => $adapter,
                 'scopeResolver' => $this->asyncEventScopeResolver,
                 'indexStructure' => $this->indexStructure
             ]
