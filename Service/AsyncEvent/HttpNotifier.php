@@ -48,7 +48,8 @@ class HttpNotifier implements NotifierInterface
                 self::HASHING_ALGORITHM,
                 $body,
                 $this->encryptor->decrypt($asyncEvent->getVerificationToken())
-            )
+            ),
+            'content-type' => 'application/json'
         ];
 
         $notifierResult = new NotifierResult();
