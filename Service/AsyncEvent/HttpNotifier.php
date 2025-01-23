@@ -10,6 +10,7 @@ use MageOS\AsyncEvents\Api\Data\AsyncEventInterface;
 use MageOS\AsyncEvents\Helper\NotifierResult;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 use Magento\Framework\Encryption\EncryptorInterface;
 use CloudEvents\Serializers\JsonSerializer;
 
@@ -97,6 +98,10 @@ class HttpNotifier implements NotifierInterface
                     $exception->getMessage()
                 );
             }
+        } catch (ConnectException $exception) {
+            $notifierResult->setIsSuccessful(false);
+            $notifierResult->setResponseData($exception->getMessage());
+            $notifierResult->setIsRetryable(true);
         }
 
         return $notifierResult;
