@@ -75,8 +75,8 @@ class AsyncEventSubscriber implements
         private readonly AsyncEventLogMapper $loggerMapper,
         private readonly IndexStructureFactory $indexStructureFactory,
         private readonly array $data,
-        int $batchSize = null,
-        DeploymentConfig $deploymentConfig = null
+        ?int $batchSize = null,
+        ?DeploymentConfig $deploymentConfig = null
     ) {
         $this->batchSize = $batchSize ?? self::BATCH_SIZE;
         $this->deploymentConfig = $deploymentConfig ?: ObjectManager::getInstance()->get(DeploymentConfig::class);
