@@ -102,6 +102,7 @@
 
     <type name="\MageOS\AsyncEvents\Model\Indexer\IndexStructure">
         <arguments>
+            <argument name="adapter" xsi:type="object">\Magento\Elasticsearch\Model\Adapter\Elasticsearch\Proxy</argument>
             <argument name="scopeResolver" xsi:type="object" shared="false">\MageOS\AsyncEvents\Model\Resolver\AsyncEvent</argument>
         </arguments>
     </type>
