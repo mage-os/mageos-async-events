@@ -70,9 +70,15 @@ class AsyncEventSubscriberLogs
 
         while (true) {
             $select = $this->connection->select()
-                ->from($tableName, ['*', new Zend_Db_Expr("'$asyncEvent' AS event_name")])
-                ->where('log_id > ?', $lastId)
-                ->order('log_id ASC')
+                ->from(['main_table' => $tableName])
+                ->join(
+                    ['ae' => 'async_event_subscriber'],
+                    'ae.subscription_id = main_table.subscription_id',
+                    ['event_name']
+                )
+                ->where('ae.event_name = ?', $asyncEvent)
+                ->where('main_table.log_id > ?', $lastId)
+                ->order('main_table.log_id ASC')
                 ->limit($batchSize);
 
             $result = $this->connection->fetchAll($select);

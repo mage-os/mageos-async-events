@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace MageOS\AsyncEvents\Model\Indexer;
 
 use Exception;
-use Magento\Elasticsearch\Model\Config;
+use Magento\Elasticsearch\Model\Config as ElasticsearchConfig;
 use Magento\Elasticsearch\SearchAdapter\ConnectionManager;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Filters\FilterModifier;
 use Magento\Ui\Component\Filters\Type\Search;
+use MageOS\AsyncEvents\Helper\Config as AsyncEventsConfig;
 
 class LuceneSearch extends Search
 {
@@ -21,7 +22,8 @@ class LuceneSearch extends Search
      * @param FilterBuilder $filterBuilder
      * @param FilterModifier $filterModifier
      * @param ConnectionManager $connectionManager
-     * @param Config $config
+     * @param ElasticsearchConfig $elasticsearchConfig
+     * @param AsyncEventsConfig $asyncEventsConfig
      * @param array $components
      * @param array $data
      */
@@ -31,7 +33,8 @@ class LuceneSearch extends Search
         FilterBuilder $filterBuilder,
         FilterModifier $filterModifier,
         private readonly ConnectionManager $connectionManager,
-        private readonly Config $config,
+        private readonly ElasticsearchConfig $elasticsearchConfig,
+        private readonly AsyncEventsConfig $asyncEventsConfig,
         array $components = [],
         array $data = []
     ) {
@@ -49,38 +52,49 @@ class LuceneSearch extends Search
      */
     public function prepare(): void
     {
-        $client = $this->connectionManager->getConnection();
         $value = $this->getContext()->getRequestParam('search');
-        $indexPrefix = $this->config->getIndexPrefix();
+
         $filter = $this->filterBuilder->setConditionType('in')
             ->setField($this->getName());
 
-        if ($value === "") {
+        if (empty($value)) {
             return;
         }
 
-        try {
-            $rawResponse = $client->query(
-                [
-                    'index' => $indexPrefix . '_async_event_*',
-                    'q' => $value,
-                    // the default page size is 10. The highest limit is 10000. If we want to traverse further, we will
-                    // have to use the search after parameter. There are no plans to implement this right now.
-                    'size' => 100
-                ]
-            );
+        if ($this->asyncEventsConfig->isIndexingEnabled()) {
+            $client = $this->connectionManager->getConnection();
+            $indexPrefix = $this->elasticsearchConfig->getIndexPrefix();
+            $filter = $this->filterBuilder->setConditionType('in')
+                ->setField($this->getName());
 
-            $rawDocuments = $rawResponse['hits']['hits'] ?? [];
-            $asyncEventIds = array_column($rawDocuments, '_id');
+            try {
+                $rawResponse = $client->query(
+                    [
+                        'index' => $indexPrefix . '_async_event_*',
+                        'q' => $value,
+                        // the default page size is 10. The highest limit is 10000. If we want to traverse further, we
+                        // will have to use the search after parameter. There are no plans to implement this right now.
+                        'size' => 100
+                    ]
+                );
 
-            if (!empty($asyncEventIds)) {
-                $filter->setValue($asyncEventIds);
-            } else {
-                $filter->setValue("0");
+                $rawDocuments = $rawResponse['hits']['hits'] ?? [];
+                $asyncEventIds = array_column($rawDocuments, '_id');
+
+                if (!empty($asyncEventIds)) {
+                    $filter->setValue($asyncEventIds);
+                } else {
+                    $filter->setValue('0');
+                }
+            } catch (Exception) {
+                // If we're unable to connect to Elasticsearch, we'll return nothing
+                $filter->setValue('0');
             }
-        } catch (Exception) {
-            // If we're unable to connect to Elasticsearch, we'll return nothing
-            $filter->setValue("0");
+
+        } else {
+            $filter = $this->filterBuilder->setConditionType('like')
+                ->setField('serialized_data')
+                ->setValue($value);
         }
 
         $this->getContext()->getDataProvider()->addFilter($filter->create());
