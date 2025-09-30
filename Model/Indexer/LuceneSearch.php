@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace MageOS\AsyncEvents\Model\Indexer;
 
 use Exception;
-use Magento\Elasticsearch\Model\Config;
+use Magento\Elasticsearch\Model\Config as ElasticsearchConfig;
 use Magento\Elasticsearch\SearchAdapter\ConnectionManager;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
@@ -22,7 +22,7 @@ class LuceneSearch extends Search
      * @param FilterBuilder $filterBuilder
      * @param FilterModifier $filterModifier
      * @param ConnectionManager $connectionManager
-     * @param Config $config
+     * @param ElasticsearchConfig $elasticsearchConfig
      * @param AsyncEventsConfig $asyncEventsConfig
      * @param array $components
      * @param array $data
@@ -33,7 +33,7 @@ class LuceneSearch extends Search
         FilterBuilder $filterBuilder,
         FilterModifier $filterModifier,
         private readonly ConnectionManager $connectionManager,
-        private readonly Config $config,
+        private readonly ElasticsearchConfig $elasticsearchConfig,
         private readonly AsyncEventsConfig $asyncEventsConfig,
         array $components = [],
         array $data = []
@@ -63,7 +63,7 @@ class LuceneSearch extends Search
 
         if ($this->asyncEventsConfig->isIndexingEnabled()) {
             $client = $this->connectionManager->getConnection();
-            $indexPrefix = $this->config->getIndexPrefix();
+            $indexPrefix = $this->elasticsearchConfig->getIndexPrefix();
             $filter = $this->filterBuilder->setConditionType('in')
                 ->setField($this->getName());
 
@@ -84,11 +84,11 @@ class LuceneSearch extends Search
                 if (!empty($asyncEventIds)) {
                     $filter->setValue($asyncEventIds);
                 } else {
-                    $filter->setValue("0");
+                    $filter->setValue('0');
                 }
             } catch (Exception) {
                 // If we're unable to connect to Elasticsearch, we'll return nothing
-                $filter->setValue("0");
+                $filter->setValue('0');
             }
 
         } else {
