@@ -4,7 +4,7 @@
     <table name="async_event_subscriber" charset="utf8mb4" collation="utf8mb4_unicode_ci">
         <column name="subscription_id" xsi:type="int" unsigned="true" identity="true" nullable="false"/>
         <column name="event_name" xsi:type="varchar" nullable="false"/>
-        <column name="recipient_url" xsi:type="varchar" nullable="false"/>
+        <column name="recipient_url" xsi:type="varchar" length="1024" nullable="false"/>
         <column name="verification_token" xsi:type="varchar" nullable="false"/>
         <column name="status" xsi:type="boolean" nullable="false" default="0"
                 comment="Whether the subscription is active or not"/>
