@@ -74,7 +74,7 @@ class AsyncEventSubscriber implements
         private readonly ElasticsearchFactory $adapterFactory,
         private readonly AsyncEventLogMapper $loggerMapper,
         private readonly IndexStructureFactory $indexStructureFactory,
-        private readonly array $data,
+        private readonly array $data = [],
         ?int $batchSize = null,
         ?DeploymentConfig $deploymentConfig = null
     ) {
