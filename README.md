@@ -253,6 +253,49 @@ Search all events with the order increment id starting with `CK` and status succ
 To turn off asynchronous event indexing visit Admin > Stores > Settings > Configuration > Advanced > System >
 Async Events and disable `Enable Asynchronous Events Indexing`.
 
+## Related Modules
+
+### Common Events
+
+[Mage-OS Common Asynchronous Events](https://github.com/mage-os/mageos-common-async-events) includes several
+default events for this module:
+
+| Event identifier         | Description                                            |
+|--------------------------|--------------------------------------------------------|
+| customer.created         | When a customer is created                             |
+| customer.updated         | When a customer is saved, except when it's new         |
+| customer.login           | When a customer logs in                                |
+| customer.address.created | When a customer address is created                     |
+| customer.address.updated | When a customer address is saved, except when it's new |
+| sales.order.created      | When a new order is created                            |
+| sales.order.updated      | When the state of an existing order is changed         |
+| sales.order.paid         | When an order is fully paid                            |
+| sales.order.shipped      | When an order is fully shipped                         |
+| sales.order.holded       | When an order is set "on hold"                         |
+| sales.order.unholded     | When an order is released from "on hold"               |
+| sales.order.cancelled    | When an order is cancelled                             |
+| sales.shipment.created   | When a new shipment is created                         |
+| sales.invoice.created    | When a new invoice is created                          |
+| sales.invoice.paid       | When an invoice is paid                                |
+| sales.creditmemo.created | When a new creditmemo is created                       |
+| catalog.product.created  | When a new product is created                          |
+| catalog.product.updated  | When an existing product is saved                      |
+| cms.page.created         | When a new CMS page is created                         |
+| cms.page.updated         | When an existing CMS page is saved                     |
+| cms.block.created        | When a new CMS block is created                        |
+| cms.block.updated        | When an existing CMS block is saved                    |
+
+These events work out of the box and can be used within subscribers.
+The module can also be used as a template on how to implement custom events.
+
+### Admin UI
+
+[Mage-OS Asynchronous Events Admin Ui](https://github.com/mage-os/mageos-async-events-admin-ui) provides
+a simple interface to create subscribers for this module in the Magento Admin area instead of via REST API.
+It only supports HTTP subscribers at the moment.
+
+![Admin UI Form](docs/admin_ui_form.png)
+
 ## Support
 
 | Async Events | Magento 2.3.x      | >= Magento 2.4.0 <= Magento 2.4.3 | >= Magento 2.4.4   |
